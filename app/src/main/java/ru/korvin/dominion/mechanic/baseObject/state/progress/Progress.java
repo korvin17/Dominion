@@ -5,14 +5,29 @@ import ru.korvin.dominion.mechanic.baseObject.state.events.Event;
 
 public class Progress {
 
-    protected ProgressState state;
+    protected ProgressState state = ProgressState.ready;
     protected boolean needShowActiity = false;
     protected Event event;
 
-    public void setState(ProgressState state) {
-        this.state = state;
+    public void startExecute() throws IllegalProgressStateException {
+        if (this.state != ProgressState.ready) {
+            throw new IllegalProgressStateException();
+        }
+        this.state = ProgressState.execute;
     }
 
+    public void finish() throws IllegalProgressStateException {
+        if (this.state != ProgressState.execute) {
+            throw new IllegalProgressStateException();
+        }
+        this.state = ProgressState.finished;
+    }
+
+    public void end() {
+        this.state = ProgressState.finished;
+    }
+
+/*
     protected static final Progress finishedProgres;
     protected static final Progress readyProgres;
 
@@ -29,11 +44,15 @@ public class Progress {
 
     public static Progress getReadyProgress() {
         return readyProgres;
-    }
+    }*/
 
 
     public boolean isReady() {
         return state == ProgressState.ready;
+    }
+
+    public boolean isExecute() {
+        return state == ProgressState.execute;
     }
 
     public boolean isFinished() {

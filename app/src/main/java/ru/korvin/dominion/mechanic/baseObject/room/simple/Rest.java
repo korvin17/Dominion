@@ -1,6 +1,6 @@
 package ru.korvin.dominion.mechanic.baseObject.room.simple;
 
-import ru.korvin.dominion.mechanic.baseObject.Creather.Person;
+import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.state.progress.Progress;
 
