@@ -1,15 +1,17 @@
 package ru.korvin.dominion.mechanic.server;
 
 
+import java.util.Collection;
 import java.util.logging.Logger;
 
+import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.room.RoomProgress;
 import ru.korvin.dominion.mechanic.baseObject.state.State;
 import ru.korvin.dominion.mechanic.baseObject.state.progress.IllegalProgressStateException;
 
 public class Server {
-    private State state;
+    protected State state;
 
     public ServerProgress doStep(ServerProgress progress) throws IllegalProgressStateException {
         if (progress.isReady()) {
@@ -48,5 +50,10 @@ public class Server {
 
     private static final String LOGGER_NAME = "game server";
     Logger logger = Logger.getLogger(LOGGER_NAME);
+
+
+    public Collection<Person> getVisibleGirls() {
+        return state.getGirls();
+    }
 
 }

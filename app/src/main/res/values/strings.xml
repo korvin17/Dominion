@@ -11,6 +11,16 @@
     <string name="action_settings">Settings</string>
     <string name="title_girlinfo_list">GirlsInfo</string>
     <string name="title_girlinfo_detail">GirlInfo Detail</string>
-    <string name="attributes_header">Attributes</string>
-
+    <string name="girl_info_ability_header">Ability</string>
+    <string name="girl_info_xp_label">XP</string>
+    <string name="girl_Info_vigor_label">Vigor</string>
+    <string name="game_skill">Skill</string>
+    <string name="game_skills">Skills</string>
+    <string name="game_skill_maid">Maid</string>
+    <string name="game_ability_strength">Strength</string>
+    <string name="game_ability_dexterity">Dexterity</string>
+    <string name="game_ability_constitution">Constitution</string>
+    <string name="game_ability_intelligence">Intelligence</string>
+    <string name="game_ability_wisdom">Wisdom</string>
+    <string name="game_ability_charisma">Charisma</string>
 </resources>

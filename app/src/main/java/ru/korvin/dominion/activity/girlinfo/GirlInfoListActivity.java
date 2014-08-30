@@ -1,4 +1,4 @@
-package ru.korvin.dominion.activity;
+package ru.korvin.dominion.activity.girlinfo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +14,11 @@ import ru.korvin.dominion.R;
  * lead to a {@link GirlInfoDetailActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
- * <p/>
+ * <p>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link GirlInfoListFragment} and the item details
  * (if present) is a {@link GirlInfoDetailFragment}.
- * <p/>
+ * <p>
  * This activity also implements the required
  * {@link GirlInfoListFragment.Callbacks} interface
  * to listen for item selections.
@@ -50,8 +50,14 @@ public class GirlInfoListActivity extends Activity
                     .findFragmentById(R.id.girlinfo_list))
                     .setActivateOnItemClick(true);
         }
-
+        //onItemSelected();
         // TODO: If exposing deep links into your app, handle intents here.
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        onItemSelected("1");
     }
 
     /**

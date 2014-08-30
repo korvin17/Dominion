@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import ru.korvin.dominion.R;
+import ru.korvin.dominion.activity.girlinfo.GirlInfoListActivity;
 
 
 public class MainActivity extends Activity
@@ -132,7 +133,6 @@ public class MainActivity extends Activity
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             Button button = (Button) rootView.findViewById(R.id.buttonOpen);
-
             button.setOnClickListener(
                     new View.OnClickListener() {
                         @Override

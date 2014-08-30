@@ -1,10 +1,12 @@
-package ru.korvin.dominion.activity;
+package ru.korvin.dominion.activity.girlinfo;
 
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.app.Activity;
 
 import android.view.MenuItem;
+import android.widget.GridView;
 
 import ru.korvin.dominion.R;
 
@@ -14,7 +16,7 @@ import ru.korvin.dominion.R;
  * activity is only used on handset devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
  * in a {@link GirlInfoListActivity}.
- * <p/>
+ * <p>
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link GirlInfoDetailFragment}.
  */
@@ -49,6 +51,10 @@ public class GirlInfoDetailActivity extends Activity {
                     .add(R.id.girlinfo_detail_container, fragment)
                     .commit();
         }
+
+        //GridView gv=(GridView)findViewById(R.id.girl_info_skills_list);
+        // gv.setAdapter(this);
+
     }
 
     @Override

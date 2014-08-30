@@ -25,4 +25,12 @@ public class State implements Serializable {
     public Collection<Quest> getQuests() {
         return null;
     }
+
+    public List<Person> getGirls() {
+        return girls;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
 }

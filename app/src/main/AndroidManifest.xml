@@ -17,12 +17,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.GirlInfoListActivity"
+            android:name=".activity.girlinfo.GirlInfoListActivity"
             android:label="@string/title_girlinfo_list"></activity>
         <activity
-            android:name=".activity.GirlInfoDetailActivity"
+            android:name=".activity.girlinfo.GirlInfoDetailActivity"
             android:label="@string/title_girlinfo_detail"
-            android:parentActivityName=".activity.GirlInfoListActivity">
+            android:parentActivityName=".activity.girlinfo.GirlInfoListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.korvin.dominion.GirlInfoListActivity" />

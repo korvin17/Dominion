@@ -14,4 +14,10 @@ public class GameFacade {
     public Storage getStorage() {
         return storage;
     }
+
+    private Server server;
+
+    public Server getServer() {
+        return server;
+    }
 }

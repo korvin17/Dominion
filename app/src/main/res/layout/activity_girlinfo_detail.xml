@@ -3,7 +3,248 @@
     android:id="@+id/girlinfo_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ru.korvin.dominion.activity.GirlInfoDetailActivity"
+    tools:context="ru.korvin.dominion.activity.girlinfo.GirlInfoDetailActivity"
     tools:ignore="MergeRootFrame">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/textView" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.56" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="bottom"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/GirlInfiHPprogressBar"
+                    android:layout_gravity="center_horizontal"
+                    android:progress="100"
+                    android:secondaryProgress="0"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:focusableInTouchMode="false"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentRight="false"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/girl_info_xp_label"
+                    android:id="@+id/GirlInfiHPTextView"
+                    android:layout_alignParentRight="false"
+                    android:layout_toRightOf="@+id/GirlInfiHPprogressBar"
+                    android:layout_alignBaseline="@+id/GirlInfiHPprogressBar"
+                    android:layout_marginRight="5dp"
+                    android:layout_margin="5dp"
+                    android:layout_centerVertical="true" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/GirlInfoVigorProgressBar"
+                    android:layout_gravity="center_horizontal"
+                    android:progress="100"
+                    android:secondaryProgress="0"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:focusableInTouchMode="false"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentRight="false"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/GirlInfiHPTextView"
+                    android:layout_margin="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/girl_Info_vigor_label"
+                    android:id="@+id/GirlInfoVigorTextView"
+                    android:layout_alignParentRight="false"
+                    android:layout_alignBaseline="@+id/GirlInfiHPprogressBar"
+                    android:layout_toRightOf="@+id/GirlInfoVigorProgressBar"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/girl_info_ability_header"
+                android:id="@+id/girl_info_ability_header"
+                android:layout_gravity="center_horizontal" />
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/game_ability_strength"
+                    android:id="@+id/girl_info_strength_label"
+                    android:layout_row="0"
+                    android:layout_column="0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/game_ability_dexterity"
+                    android:id="@+id/girl_info_ability_dexterity_label"
+                    android:layout_row="0"
+                    android:layout_column="2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="15(-2)"
+                    android:id="@+id/GirlInfoAbilityDexterityValue"
+                    android:layout_row="0"
+                    android:layout_column="3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/girl_info_ability_strength_value"
+                    android:text="10(+15)"
+                    android:singleLine="true"
+                    android:layout_row="0"
+                    android:layout_column="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="100"
+                    android:id="@+id/girl_info_ability_wisdom_value"
+                    android:layout_row="2"
+                    android:layout_column="3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/game_ability_wisdom"
+                    android:id="@+id/girl_info_ability_wisdom_label"
+                    android:layout_row="2"
+                    android:layout_column="2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/game_ability_constitution"
+                    android:id="@+id/girl_info_ability_constitution_label"
+                    android:layout_row="1"
+                    android:layout_column="0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/game_ability_charisma"
+                    android:id="@+id/girl_info_ability_charisma_Label"
+                    android:layout_row="1"
+                    android:layout_column="2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="999(-1000)"
+                    android:id="@+id/girl_info_ability_charisma_value"
+                    android:layout_row="1"
+                    android:layout_column="3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/game_ability_intelligence"
+                    android:id="@+id/girl_info_ability_intelligence_label"
+                    android:layout_row="2"
+                    android:layout_column="0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="105(-43)"
+                    android:id="@+id/girl_info_ability_constitution_value"
+                    android:layout_row="1"
+                    android:layout_column="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="50"
+                    android:id="@+id/girl_info_ability_intelligence_value"
+                    android:layout_row="2"
+                    android:layout_column="1" />
+
+            </GridLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/game_skills"
+                android:id="@+id/girl_info_skill_header"
+                android:layout_gravity="center_horizontal" />
+
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/girl_info_skills_list"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+    </LinearLayout>
 </FrameLayout>
