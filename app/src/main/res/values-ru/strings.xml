@@ -11,6 +11,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_girlinfo_list">GirlsInfo</string>
     <string name="title_girlinfo_detail">GirlInfo Detail</string>
-    <string name="attributes_header">Attributes</string>
+    <string name="attributes_header">Характеристики </string>
 
 </resources>
