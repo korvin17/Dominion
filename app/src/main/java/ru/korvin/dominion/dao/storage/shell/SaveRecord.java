@@ -1,8 +1,8 @@
-package ru.korvin.dominion.mechanic.storage;
+package ru.korvin.dominion.dao.storage.shell;
 
 import java.util.Date;
 
-public class StorageRecord {
+public class SaveRecord {
     private String name;
     private Date date;
 
