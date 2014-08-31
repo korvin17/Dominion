@@ -27,4 +27,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="save">save</string>
     <string name="load">load</string>
+    <string name="introduction_history_header">Introduction</string>
+    <string name="introduction_history_introduction_part1">introduction_part1</string>
+    <string name="title_activity_introduction_create_avatar">IntroductionCreateAvatarActivity</string>
+
 </resources>
