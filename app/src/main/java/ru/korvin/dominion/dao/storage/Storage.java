@@ -21,9 +21,9 @@ public class Storage {
     }
 
 
-    private DBHelper dbHelper;
+    private DB mDB;
 
     public Storage(Context context) {
-        this.dbHelper = new DBHelper(context);
+        this.mDB = new DB(context);
     }
 }
