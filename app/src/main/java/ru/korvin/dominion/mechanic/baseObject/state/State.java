@@ -15,11 +15,29 @@ import ru.korvin.dominion.mechanic.baseObject.state.player.Player;
 
 
 public class State implements Serializable {
-    private List<Event> lastDayEvent;
+    private Player player;
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+
+
+
+
+
+
+
+
+
+    /* private List<Event> lastDayEvent;
 
     private List<Person> girls;
     private List<Room> rooms;
-    private Player player;
 
 
     public Collection<Quest> getQuests() {
@@ -32,5 +50,5 @@ public class State implements Serializable {
 
     public List<Room> getRooms() {
         return rooms;
-    }
+    }*/
 }

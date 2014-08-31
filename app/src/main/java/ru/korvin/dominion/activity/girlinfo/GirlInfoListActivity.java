@@ -3,6 +3,8 @@ package ru.korvin.dominion.activity.girlinfo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import ru.korvin.dominion.R;
 
@@ -14,11 +16,11 @@ import ru.korvin.dominion.R;
  * lead to a {@link GirlInfoDetailActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
- * <p>
+ * <p/>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link GirlInfoListFragment} and the item details
  * (if present) is a {@link GirlInfoDetailFragment}.
- * <p>
+ * <p/>
  * This activity also implements the required
  * {@link GirlInfoListFragment.Callbacks} interface
  * to listen for item selections.
@@ -36,7 +38,7 @@ public class GirlInfoListActivity extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_girlinfo_list);
-
+        // getActionBar().setHomeButtonEnabled(true);
         if (findViewById(R.id.girlinfo_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-large and
@@ -52,6 +54,18 @@ public class GirlInfoListActivity extends Activity
         }
         //onItemSelected();
         // TODO: If exposing deep links into your app, handle intents here.
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.girlinfo, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -23,4 +23,6 @@
     <string name="game_ability_intelligence">Интеллект</string>
     <string name="game_ability_wisdom">Мудрость</string>
     <string name="game_ability_charisma">Харизма</string>
+    <string name="save">сохранить</string>
+    <string name="load">загрузить</string>
 </resources>

@@ -1,5 +1,6 @@
 package ru.korvin.dominion.mechanic.baseObject.creature.race;
 
 
-public interface Race {
+public enum Race {
+    Elf, Human
 }

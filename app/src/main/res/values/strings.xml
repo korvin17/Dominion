@@ -23,4 +23,8 @@
     <string name="game_ability_intelligence">Intelligence</string>
     <string name="game_ability_wisdom">Wisdom</string>
     <string name="game_ability_charisma">Charisma</string>
+    <string name="title_activity_main_tab">Dominon</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="save">save</string>
+    <string name="load">load</string>
 </resources>

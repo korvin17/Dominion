@@ -48,12 +48,18 @@ public class Server {
 
     }
 
+
     private static final String LOGGER_NAME = "game server";
     Logger logger = Logger.getLogger(LOGGER_NAME);
 
 
     public Collection<Person> getVisibleGirls() {
-        return state.getGirls();
+        return null;
+        //     return state.getGirls();
     }
 
+
+    public State getState() {
+        return state;
+    }
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import ru.korvin.dominion.mechanic.baseObject.creature.gameClass.Archetype;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
-import ru.korvin.dominion.mechanic.baseObject.creature.sex.Sex;
+import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
 import ru.korvin.dominion.mechanic.baseObject.skill.SkillList;
 
 
@@ -14,7 +14,6 @@ public class Creature implements Serializable {
     protected SkillList skillList;
     public Archetype archetype;
     protected int money;
-
 
     public int hp;
     public int maxHp;
@@ -31,6 +30,7 @@ public class Creature implements Serializable {
     public int basic_intelligence;//(INT) – Интеллект
     public int basic_wisdom;// (WIS) – Мудрость
     public int basic_charisma;//(CHA) – Харизма
+
 
     public int getAttack() {
         return 10;
