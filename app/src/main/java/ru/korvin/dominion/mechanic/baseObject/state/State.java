@@ -2,36 +2,25 @@ package ru.korvin.dominion.mechanic.baseObject.state;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
-import ru.korvin.dominion.mechanic.baseObject.creature.Person;
-import ru.korvin.dominion.mechanic.baseObject.quest.Quest;
-import ru.korvin.dominion.mechanic.baseObject.room.Room;
-import ru.korvin.dominion.mechanic.baseObject.state.events.Event;
+import ru.korvin.dominion.mechanic.baseObject.castle.Castle;
 import ru.korvin.dominion.mechanic.baseObject.state.player.Player;
 
 
 public class State implements Serializable {
     private Player player;
+    private Castle castel;
+    private Calendar date;
 
-    public Player getPlayer() {
-        return player;
-    }
 
-    public void setPlayer(Player player) {
+    public State(Player player, Castle castle, int year, int month, int day) {
         this.player = player;
+        this.castel = castle;
+        this.date = GregorianCalendar.getInstance();
+        this.date.set(year, month, day);
     }
-
-
-
-
-
-
-
-
 
 
     /* private List<Event> lastDayEvent;
@@ -51,4 +40,8 @@ public class State implements Serializable {
     public List<Room> getRooms() {
         return rooms;
     }*/
+    public Player getPlayer() {
+        return player;
+    }
+
 }

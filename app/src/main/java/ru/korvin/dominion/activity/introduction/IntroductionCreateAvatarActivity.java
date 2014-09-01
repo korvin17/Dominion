@@ -21,6 +21,7 @@ import android.widget.RadioButton;
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.activity.main.MainTabActivity;
 import ru.korvin.dominion.dao.GameApplication;
+import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
 
 public class IntroductionCreateAvatarActivity extends Activity implements View.OnClickListener {
@@ -29,6 +30,7 @@ public class IntroductionCreateAvatarActivity extends Activity implements View.O
     RadioButton radioButtonMale;
     RadioButton radioButtonFemale;
     RadioButton radioButtonFutanari;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +78,7 @@ public class IntroductionCreateAvatarActivity extends Activity implements View.O
             if (radioButtonMale.isChecked()) sex = Sex.male;
             if (radioButtonFemale.isChecked()) sex = Sex.female;
             if (radioButtonFutanari.isChecked()) sex = Sex.futanari;
-            ((GameApplication) getApplication()).getGameFacade().init(name, sex);
+            ((GameApplication) getApplication()).init(name, sex, Race.Human);
             Intent intent = new Intent(this, MainTabActivity.class);
             this.startActivity(intent);
         }

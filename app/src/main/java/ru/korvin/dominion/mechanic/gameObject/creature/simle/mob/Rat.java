@@ -5,8 +5,8 @@ import ru.korvin.dominion.mechanic.baseObject.creature.Creature;
 public class Rat extends Creature {
 
     public Rat() {
-        this.hp = 10;
-        this.maxHp = 10;
+        this.ability.hp = 10;
+        this.ability.maxHp = 10;
     }
 
     @Override

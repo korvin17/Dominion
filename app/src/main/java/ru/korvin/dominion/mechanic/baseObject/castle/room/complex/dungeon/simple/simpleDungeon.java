@@ -1,4 +1,4 @@
-package ru.korvin.dominion.mechanic.baseObject.room.complex.dungeon.simple;
+package ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.simple;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -8,8 +8,8 @@ import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.gameClass.Archetype;
 import ru.korvin.dominion.mechanic.baseObject.state.progress.IllegalProgressStateException;
 import ru.korvin.dominion.mechanic.gameObject.creature.simle.mob.Rat;
-import ru.korvin.dominion.mechanic.baseObject.room.RoomProgress;
-import ru.korvin.dominion.mechanic.baseObject.room.complex.dungeon.Dangeon;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.Dangeon;
 import ru.korvin.dominion.mechanic.util.Util;
 
 public class simpleDungeon extends Dangeon {

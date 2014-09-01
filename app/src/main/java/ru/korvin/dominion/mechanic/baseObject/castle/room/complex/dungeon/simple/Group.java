@@ -1,6 +1,4 @@
-package ru.korvin.dominion.mechanic.baseObject.room.complex.dungeon.simple;
-
-import java.util.Random;
+package ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.simple;
 
 import ru.korvin.dominion.mechanic.baseObject.creature.Creature;
 import ru.korvin.dominion.mechanic.util.Util;

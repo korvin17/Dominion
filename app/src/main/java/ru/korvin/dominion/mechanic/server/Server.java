@@ -5,13 +5,27 @@ import java.util.Collection;
 import java.util.logging.Logger;
 
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
-import ru.korvin.dominion.mechanic.baseObject.room.Room;
-import ru.korvin.dominion.mechanic.baseObject.room.RoomProgress;
+import ru.korvin.dominion.mechanic.baseObject.castle.Castle;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
 import ru.korvin.dominion.mechanic.baseObject.state.State;
+import ru.korvin.dominion.mechanic.baseObject.state.player.Player;
 import ru.korvin.dominion.mechanic.baseObject.state.progress.IllegalProgressStateException;
 
 public class Server {
     protected State state;
+
+
+    public State getState() {
+        return state;
+    }
+
+    public void initState(Player player, Castle castle, int year, int month, int day) {
+        this.state = new State(player, castle, year, month, day);
+
+
+    }
+
 
     public ServerProgress doStep(ServerProgress progress) throws IllegalProgressStateException {
         if (progress.isReady()) {
@@ -59,7 +73,4 @@ public class Server {
     }
 
 
-    public State getState() {
-        return state;
-    }
 }

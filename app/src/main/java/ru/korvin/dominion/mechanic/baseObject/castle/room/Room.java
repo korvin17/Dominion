@@ -1,4 +1,4 @@
-package ru.korvin.dominion.mechanic.baseObject.room;
+package ru.korvin.dominion.mechanic.baseObject.castle.room;
 
 
 import java.io.Serializable;
@@ -8,7 +8,6 @@ import java.util.List;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.state.progress.IllegalProgressStateException;
 import ru.korvin.dominion.mechanic.baseObject.state.progress.Progress;
-import ru.korvin.dominion.mechanic.baseObject.state.progress.ProgressState;
 
 public class Room implements Serializable {
     protected List<Person> persons = new ArrayList<Person>();

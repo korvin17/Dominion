@@ -23,9 +23,7 @@ public class DB {
 
 
     public void saveState(State state) {
-        State newState = new State();
-        newState.setPlayer(new Player());
-        SaveRecord saveRecord = new SaveRecord("test", new Date(), newState);
+        SaveRecord saveRecord = new SaveRecord("", new Date(), state);
         SQLiteDatabase base = mDBHelper.getWritableDatabase();
         ContentValues param = new ContentValues();
         param.put(COLUMN_NAME_NAME, saveRecord.getName());
@@ -46,12 +44,15 @@ public class DB {
     }
 
     private DBHelper mDBHelper;
+
     public DB(Context contex) {
         this.mDBHelper = new DBHelper(contex);
     }
+
     public void close() {
         mDBHelper.close();
     }
+
     private class DBHelper extends SQLiteOpenHelper {
         private static final int version = 2;
         private static final String dbName = "db.sqlite";
@@ -59,12 +60,14 @@ public class DB {
         public DBHelper(Context context) {
             super(context, dbName, null, DBHelper.version);
         }
+
         private static final String CREATE_TABLE_SAVE = "create table " + TABLE_NAME_SAVE + " ( " +
                 COLUMN_NAME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_NAME_NAME + " TEXT," +
                 COLUMN_NAME_DATE + " INTEGER," +
                 COLUMN_NAME_SAVE + " BLOD" +
                 ")";
+
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(CREATE_TABLE_SAVE);
         }

@@ -53,7 +53,7 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_tab_activity);
 
-        if (((GameApplication) getApplication()).getGameFacade().isFirstLaunch()) {
+        if (((GameApplication) getApplication()).isFirstLaunch()) {
             Intent introduction = new Intent(this, IntroductionHistoryActivity.class);
             this.startActivity(introduction);
         }
@@ -111,7 +111,7 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener {
             case R.id.main_tab_settings:
                 return true;
             case R.id.main_tab_save:
-                State state = ((GameApplication) getApplication()).getGameFacade().getServer().getState();
+                State state = ((GameApplication) getApplication()).getServer().getState();
                 mDataBase.saveState(state);
                 return true;
             case R.id.main_tab_load:

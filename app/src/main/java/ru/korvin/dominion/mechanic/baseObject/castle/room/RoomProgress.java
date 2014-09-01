@@ -1,4 +1,4 @@
-package ru.korvin.dominion.mechanic.baseObject.room;
+package ru.korvin.dominion.mechanic.baseObject.castle.room;
 
 
 import java.util.HashMap;

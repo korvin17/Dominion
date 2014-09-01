@@ -9,27 +9,13 @@ import ru.korvin.dominion.mechanic.baseObject.skill.SkillList;
 
 
 public class Creature implements Serializable {
+    protected String name;
     protected Sex sex;
     protected Race race;
+    protected Ability ability;
     protected SkillList skillList;
     public Archetype archetype;
-    protected int money;
-
-    public int hp;
-    public int maxHp;
-
-    public int mp;
-    public int maxMp;
-
-    public int energy;
-    public int maxEnergy;
-
-    public int basic_strength;//(STR) – Сила
-    public int basic_dexterity;//(DEX) – Ловкость
-    public int basic_constitution;//(CON) – Телосложение
-    public int basic_intelligence;//(INT) – Интеллект
-    public int basic_wisdom;// (WIS) – Мудрость
-    public int basic_charisma;//(CHA) – Харизма
+    protected long money;
 
 
     public int getAttack() {
@@ -45,14 +31,14 @@ public class Creature implements Serializable {
     }
 
     public void doDamage(float damage) {
-        hp -= damage;
+        ability.hp -= damage;
     }
 
     public int doHeal(int heal) {
-        hp += heal;
-        if (hp > maxHp) {
-            int result = hp - maxHp;
-            hp = maxHp;
+        ability.hp += heal;
+        if (ability.hp > ability.maxHp) {
+            int result = ability.hp - ability.maxHp;
+            ability.hp = ability.maxHp;
             return result;
         } else {
             return 0;
@@ -60,7 +46,7 @@ public class Creature implements Serializable {
     }
 
     public boolean isDied() {
-        return hp <= 0;
+        return ability.hp <= 0;
     }
 
     public SkillList getSkillList() {
