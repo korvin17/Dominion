@@ -8,6 +8,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import ru.korvin.dominion.R;
+import ru.korvin.dominion.activity.introduction.IntroductionHistoryActivity;
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.dao.storage.DB;
 import ru.korvin.dominion.dao.storage.Storage;
@@ -50,6 +52,11 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_tab_activity);
+
+        if (((GameApplication) getApplication()).getGameFacade().isFirstLaunch()) {
+            Intent introduction = new Intent(this, IntroductionHistoryActivity.class);
+            this.startActivity(introduction);
+        }
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
@@ -86,7 +93,6 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener {
         }
         mDataBase = new DB(this);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

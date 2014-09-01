@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="introduction_history_header">Introduction</string>
+    <string name="introduction_history_introduction_part1">introduction_part1</string>
+    <string name="introduction_history_introduction_description_image_1">Description 1</string>
+</resources>

@@ -1,20 +1,27 @@
 package ru.korvin.dominion.activity.introduction;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import ru.korvin.dominion.R;
 
-public class IntroductionHistoryActivity extends Activity {
+public class IntroductionHistoryActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.introduction_history_activity);
+        Button start = (Button) findViewById(R.id.introduction_history_button_start);
+        start.setOnClickListener(this);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -33,5 +40,13 @@ public class IntroductionHistoryActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.introduction_history_button_start) {
+            Intent intent = new Intent(this, IntroductionCreateAvatarActivity.class);
+            this.startActivity(intent);
+        }
     }
 }

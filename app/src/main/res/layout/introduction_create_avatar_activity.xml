@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
@@ -10,13 +10,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="@string/name"
         android:ems="10"
-        android:id="@+id/editText"
-        android:layout_gravity="center_horizontal|top" />
+        android:id="@+id/introduction_create_avatar_edit_name"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_centerHorizontal="true" />
 
     <RadioGroup
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"></RadioGroup>
-</FrameLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_below="@+id/introduction_create_avatar_edit_name"
+        android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/male"
+            android:id="@+id/introduction_create_avatar_radio_button_male"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/female"
+            android:id="@+id/introduction_create_avatar_radio_button_female" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/futanari"
+            android:id="@+id/introduction_create_avatar_radio_button_futanari"
+            android:checked="false" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start"
+        android:id="@+id/introduction_create_avatar_button_start"
+        android:layout_below="@+id/radioGroup"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

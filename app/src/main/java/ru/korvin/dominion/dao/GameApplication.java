@@ -2,6 +2,8 @@ package ru.korvin.dominion.dao;
 
 import android.app.Application;
 
+import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
+
 public class GameApplication extends Application {
     private GameFacade gameFacade;
 
@@ -14,4 +16,5 @@ public class GameApplication extends Application {
     public GameFacade getGameFacade() {
         return gameFacade;
     }
+
 }

@@ -1,4 +1,4 @@
-package ru.korvin.dominion.activity;
+package ru.korvin.dominion.activity.dummy;
 
 import android.app.ActionBar;
 import android.app.Activity;

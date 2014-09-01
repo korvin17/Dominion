@@ -26,6 +26,5 @@
     <string name="save">сохранить</string>
     <string name="load">загрузить</string>
     <string name="start">старт</string>
-    <string name="introduction_history_header">Вступление</string>
-    <string name="introduction_history_introduction_part1">Вступление часть 1</string>
+    <string name="name">имя</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import ru.korvin.dominion.dao.storage.DB;
+import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
 import ru.korvin.dominion.mechanic.server.Server;
 import ru.korvin.dominion.dao.storage.Storage;
 
@@ -16,9 +17,23 @@ public class GameFacade {
         this.preferences = preferences;
     }
 
-    public boolean init() {
-        //this.preferences.getBoolean();
-        return false;
+
+    private static final String PREFERENCE_IS_FIRST = "is_first";
+
+    public boolean isFirstLaunch() {
+        return this.preferences.getBoolean(PREFERENCE_IS_FIRST, true);
+    }
+
+    public void setFirstLaunch(boolean firstLaunch) {
+        SharedPreferences.Editor editor = this.preferences.edit();
+        editor.putBoolean(PREFERENCE_IS_FIRST, false);
+        editor.commit();
+    }
+
+    public void init(String persname, Sex sex) {
+
+
+        this.setFirstLaunch(false);
     }
 
     private Server server;
