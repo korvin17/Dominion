@@ -9,7 +9,7 @@ import ru.korvin.dominion.mechanic.baseObject.castle.Castle;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
 import ru.korvin.dominion.mechanic.baseObject.state.State;
-import ru.korvin.dominion.mechanic.baseObject.state.player.Player;
+import ru.korvin.dominion.mechanic.baseObject.creature.Player;
 import ru.korvin.dominion.mechanic.baseObject.state.progress.IllegalProgressStateException;
 
 public class Server {

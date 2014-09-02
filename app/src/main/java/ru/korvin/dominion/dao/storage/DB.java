@@ -10,7 +10,6 @@ import java.util.Date;
 
 import ru.korvin.dominion.dao.storage.shell.SaveRecord;
 import ru.korvin.dominion.mechanic.baseObject.state.State;
-import ru.korvin.dominion.mechanic.baseObject.state.player.Player;
 
 
 public class DB {

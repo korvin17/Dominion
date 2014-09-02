@@ -2,6 +2,7 @@ package ru.korvin.dominion.mechanic.baseObject.creature;
 
 import java.io.Serializable;
 
+import ru.korvin.dominion.R;
 import ru.korvin.dominion.mechanic.baseObject.creature.gameClass.Archetype;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
@@ -9,14 +10,21 @@ import ru.korvin.dominion.mechanic.baseObject.skill.SkillList;
 
 
 public class Creature implements Serializable {
-    protected String name;
+    protected int nameId;
     protected Sex sex;
     protected Race race;
-    protected Ability ability;
+    protected Stats stats;
     protected SkillList skillList;
     public Archetype archetype;
     protected long money;
 
+    public Creature(int nameId, Sex sex, Race race, Stats stats, SkillList skills) {
+        this.nameId = nameId;
+        this.sex = sex;
+        this.race = race;
+        this.stats = stats;
+        this.skillList = skills;
+    }
 
     public int getAttack() {
         return 10;
@@ -31,14 +39,14 @@ public class Creature implements Serializable {
     }
 
     public void doDamage(float damage) {
-        ability.hp -= damage;
+        stats.hp -= damage;
     }
 
     public int doHeal(int heal) {
-        ability.hp += heal;
-        if (ability.hp > ability.maxHp) {
-            int result = ability.hp - ability.maxHp;
-            ability.hp = ability.maxHp;
+        stats.hp += heal;
+        if (stats.hp > stats.maxHp) {
+            int result = stats.hp - stats.maxHp;
+            stats.hp = stats.maxHp;
             return result;
         } else {
             return 0;
@@ -46,7 +54,7 @@ public class Creature implements Serializable {
     }
 
     public boolean isDied() {
-        return ability.hp <= 0;
+        return stats.hp <= 0;
     }
 
     public SkillList getSkillList() {

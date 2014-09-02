@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import ru.korvin.dominion.R;
+import ru.korvin.dominion.activity.castle.CastleFragment;
 import ru.korvin.dominion.activity.introduction.IntroductionHistoryActivity;
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.dao.storage.DB;
@@ -30,7 +31,7 @@ import ru.korvin.dominion.dao.storage.shell.SaveRecord;
 import ru.korvin.dominion.mechanic.baseObject.state.State;
 
 
-public class MainTabActivity extends Activity implements ActionBar.TabListener {
+public class MainTabActivity extends Activity implements ActionBar.TabListener, CastleFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -53,10 +54,10 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_tab_activity);
 
-        if (((GameApplication) getApplication()).isFirstLaunch()) {
+        /*if (((GameApplication) getApplication()).isFirstLaunch()) {
             Intent introduction = new Intent(this, IntroductionHistoryActivity.class);
             this.startActivity(introduction);
-        }
+        }*/
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
@@ -147,6 +148,11 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener {
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
+    @Override
+    public void onFragmentInteraction(String id) {
+
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -161,7 +167,11 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            if (position == 1) {
+                return CastleFragment.newInstance();
+            } else {
+                return PlaceholderFragment.newInstance(position + 1);
+            }
         }
 
         @Override
@@ -177,7 +187,7 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener {
                 case 0:
                     return getString(R.string.title_section1).toUpperCase(l);
                 case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
+                    return getString(R.string.room_castle_name).toUpperCase(l);
                 case 2:
                     return getString(R.string.title_section3).toUpperCase(l);
             }

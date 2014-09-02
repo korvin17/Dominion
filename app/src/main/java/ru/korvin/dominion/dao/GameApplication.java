@@ -10,7 +10,7 @@ import ru.korvin.dominion.dao.storage.Storage;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
 import ru.korvin.dominion.mechanic.baseObject.castle.Castle;
-import ru.korvin.dominion.mechanic.baseObject.state.player.Player;
+import ru.korvin.dominion.mechanic.baseObject.creature.Player;
 import ru.korvin.dominion.mechanic.server.Server;
 
 public class GameApplication extends Application {

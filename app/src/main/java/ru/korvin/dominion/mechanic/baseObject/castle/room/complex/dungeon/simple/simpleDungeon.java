@@ -12,7 +12,7 @@ import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.Dangeon;
 import ru.korvin.dominion.mechanic.util.Util;
 
-public class simpleDungeon extends Dangeon {
+public abstract class simpleDungeon extends Dangeon {
     private Group adventure;
     private Group mob;
 
@@ -81,12 +81,12 @@ public class simpleDungeon extends Dangeon {
             switch (Util.random.nextInt(5)) {
                 case 0:
                 case 1:
-                    creaturesTank.add(new Rat());
+                    //creaturesTank.add(new Rat());
                 case 2:
                 case 3:
-                    creaturesDD.add(new Rat());
+                    // creaturesDD.add(new Rat());
                 case 4:
-                    creaturesHealer.add(new Rat());
+                    // creaturesHealer.add(new Rat());
             }
         }
     }

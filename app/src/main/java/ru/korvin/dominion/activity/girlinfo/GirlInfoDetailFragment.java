@@ -53,8 +53,8 @@ public class GirlInfoDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_girlinfo_detail, container, false);
-        gv = (GridView) container.findViewById(R.id.girl_info_skills_list);
-        gv.setAdapter(new GirlIfonContent(new Person(), rootView.getContext()));
+        //   gv = (GridView) container.findViewById(R.id.girl_info_skills_list);
+        //   gv.setAdapter(new GirlIfonContent(new Person(), rootView.getContext()));
         // Show the dummy content as text in a TextView.
         /*if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.girlinfo_detail)).setText(mItem.content);

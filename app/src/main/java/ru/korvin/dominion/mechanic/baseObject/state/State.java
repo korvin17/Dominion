@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.Castle;
-import ru.korvin.dominion.mechanic.baseObject.state.player.Player;
+import ru.korvin.dominion.mechanic.baseObject.creature.Player;
 
 
 public class State implements Serializable {

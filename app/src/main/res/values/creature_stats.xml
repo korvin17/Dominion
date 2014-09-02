@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <integer-array name="creature_stats_player">
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+    </integer-array>
+    <integer-array name="creature_Saber_stats">
+        <item>12</item>
+        <item>10</item>
+        <item>8</item>
+        <item>8</item>
+        <item>2</item>
+        <item>5</item>
+    </integer-array>
+    <string-array name="creature_skill_Saber">
+
+    </string-array>
+</resources>
