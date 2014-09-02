@@ -9,14 +9,14 @@ import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.state.progress.IllegalProgressStateException;
 import ru.korvin.dominion.mechanic.baseObject.state.progress.Progress;
 
-public class Room implements Serializable {
+public abstract class Room implements Serializable {
     protected List<Person> persons = new ArrayList<Person>();
 
     public RoomProgress doStep(RoomProgress progress) throws IllegalProgressStateException {
         return doStepForEveryOnePerson((RoomProgress) progress);
     }
 
-    public RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress) throws IllegalProgressStateException {
+    protected RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress) throws IllegalProgressStateException {
         RoomProgress resultProgress = new RoomProgress(persons.size());
         resultProgress.startExecute();
         boolean finished = true;
@@ -33,10 +33,11 @@ public class Room implements Serializable {
         return resultProgress;
     }
 
-    public Progress doStepForOnePerson(Person person, Progress progress) {
+    protected Progress doStepForOnePerson(Person person, Progress progress) {
         RoomProgress result = new RoomProgress(0);
         result.end();
         return result;
     }
 
+    public abstract int getNameId();
 }
