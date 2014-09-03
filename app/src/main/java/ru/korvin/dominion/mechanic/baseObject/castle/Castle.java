@@ -1,29 +1,32 @@
 package ru.korvin.dominion.mechanic.baseObject.castle;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.market.Market;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
+import ru.korvin.dominion.mechanic.baseObject.generator.UniquePersonGenerator;
 
 public class Castle implements Serializable {
-    private List<Room> rooms;
+    private Room[] rooms;
     private Market market;
 
     public Market getMarket() {
         return market;
     }
 
-    public List<Room> getRooms() {
+    public Room[] getRooms() {
         return rooms;
     }
 
 
-    public Castle() {
-        rooms = new ArrayList<>(1);
-        market = new Market();
-        rooms.add(market);
-        
+    public Castle(UniquePersonGenerator generator) {
+        rooms = new Room[1];
+        market = new Market(generator);
+        market.id = 0;
+        rooms[0] = (market);
+    }
+
+    public Room getRoomWithID(int id) {
+        return rooms[id];
     }
 }

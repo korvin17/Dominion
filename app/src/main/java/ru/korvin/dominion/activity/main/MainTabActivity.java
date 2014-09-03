@@ -1,37 +1,35 @@
 package ru.korvin.dominion.activity.main;
 
-import java.util.Date;
-import java.util.Locale;
-
-import android.app.Activity;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
+import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import java.util.Date;
+import java.util.Locale;
 
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.activity.castle.CastleFragment;
-import ru.korvin.dominion.activity.introduction.IntroductionHistoryActivity;
+import ru.korvin.dominion.activity.castle.market.MarketSlaveListActivity;
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.dao.storage.DB;
-import ru.korvin.dominion.dao.storage.Storage;
 import ru.korvin.dominion.dao.storage.shell.SaveRecord;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.state.State;
 
 
-public class MainTabActivity extends Activity implements ActionBar.TabListener, CastleFragment.OnFragmentInteractionListener {
+public class MainTabActivity extends Activity implements ActionBar.TabListener, CastleFragment.OnRoomFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -53,11 +51,6 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_tab_activity);
-
-        /*if (((GameApplication) getApplication()).isFirstLaunch()) {
-            Intent introduction = new Intent(this, IntroductionHistoryActivity.class);
-            this.startActivity(introduction);
-        }*/
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
@@ -113,7 +106,7 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
                 return true;
             case R.id.main_tab_save:
                 State state = ((GameApplication) getApplication()).getServer().getState();
-                mDataBase.saveState(state);
+                mDataBase.saveState(state, "test");
                 return true;
             case R.id.main_tab_load:
                 Cursor cursor = mDataBase.getAllState();
@@ -148,9 +141,18 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
-    @Override
-    public void onFragmentInteraction(String id) {
+    public static final String EXTRA_ROOM_ID = "room id";
 
+    @Override
+    public void onRoomFragmentInteraction(Room room) {
+        switch (room.getNameId()) {
+            case R.string.room_market_name:
+                Intent intent = new Intent(this, MarketSlaveListActivity.class);
+                intent.putExtra(EXTRA_ROOM_ID, room.id);
+                this.startActivity(intent);
+            default:
+
+        }
     }
 
     /**

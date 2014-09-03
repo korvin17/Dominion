@@ -1,10 +1,11 @@
 package ru.korvin.dominion.mechanic.baseObject.creature;
 
-import ru.korvin.dominion.R;
+import java.io.Serializable;
+
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.mechanic.server.GameConst;
 
-public class Stats {
+public class Stats implements Serializable {
     public int hp;
     public int maxHp;
 

@@ -1,8 +1,8 @@
 package ru.korvin.dominion.activity.girlinfo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -52,7 +52,7 @@ public class GirlInfoListActivity extends Activity
                     .findFragmentById(R.id.girlinfo_list))
                     .setActivateOnItemClick(true);
         }
-        //onItemSelected();
+        //onSlaveSelected();
         // TODO: If exposing deep links into your app, handle intents here.
     }
 

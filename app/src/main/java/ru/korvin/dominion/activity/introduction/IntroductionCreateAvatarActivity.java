@@ -64,7 +64,7 @@ public class IntroductionCreateAvatarActivity extends Activity implements View.O
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.introduction_history_button_start) {
+        if (v.getId() == R.id.introduction_create_avatar_button_start) {
             String name = editText.getText().toString();
             Sex sex = Sex.futanari;
             if (radioButtonMale.isChecked()) sex = Sex.male;

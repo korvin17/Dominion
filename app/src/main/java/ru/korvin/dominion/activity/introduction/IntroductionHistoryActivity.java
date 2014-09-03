@@ -9,12 +9,20 @@ import android.view.View;
 import android.widget.Button;
 
 import ru.korvin.dominion.R;
+import ru.korvin.dominion.activity.main.MainTabActivity;
+import ru.korvin.dominion.dao.GameApplication;
 
 public class IntroductionHistoryActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!((GameApplication) getApplication()).isFirstLaunch()) {
+            Intent mainTab = new Intent(this, MainTabActivity.class);
+            mainTab.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            this.startActivity(mainTab);
+            return;
+        }
         setContentView(R.layout.introduction_history_activity);
         Button start = (Button) findViewById(R.id.introduction_history_button_start);
         start.setOnClickListener(this);

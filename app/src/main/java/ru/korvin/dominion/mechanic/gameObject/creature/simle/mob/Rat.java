@@ -1,7 +1,5 @@
 package ru.korvin.dominion.mechanic.gameObject.creature.simle.mob;
 
-import ru.korvin.dominion.mechanic.baseObject.creature.Creature;
-
 public abstract class Rat {
 
    /*    this.stats.hp = 10;

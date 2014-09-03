@@ -37,7 +37,12 @@ public abstract class Room implements Serializable {
         RoomProgress result = new RoomProgress(0);
         result.end();
         return result;
+
     }
 
+    public int id;
+
     public abstract int getNameId();
+
+    public abstract int getImageId();
 }

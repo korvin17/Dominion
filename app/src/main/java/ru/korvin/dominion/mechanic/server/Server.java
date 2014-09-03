@@ -4,12 +4,13 @@ package ru.korvin.dominion.mechanic.server;
 import java.util.Collection;
 import java.util.logging.Logger;
 
-import ru.korvin.dominion.mechanic.baseObject.creature.Person;
-import ru.korvin.dominion.mechanic.baseObject.castle.Castle;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
-import ru.korvin.dominion.mechanic.baseObject.state.State;
+import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.Player;
+import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
+import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
+import ru.korvin.dominion.mechanic.baseObject.state.State;
 import ru.korvin.dominion.mechanic.baseObject.state.progress.IllegalProgressStateException;
 
 public class Server {
@@ -20,10 +21,15 @@ public class Server {
         return state;
     }
 
-    public void initState(Player player, Castle castle, int year, int month, int day) {
-        this.state = new State(player, castle, year, month, day);
+    public void setState(State state) {
+        this.state = state;
+    }
 
-
+    public void initState(String playerName, Sex sex, Race race) {
+        Player player = new Player(playerName, sex, race, GameConst.INITIAL_MONEY,
+                GameConst.INITIAL_HP, GameConst.INITIAL_MP, GameConst.INITIAL_ENERGY,
+                GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY);
+        this.state = new State(player, GameConst.INITIAL_YEAR, GameConst.INITIAL_MONTH, GameConst.INITIAL_DAY);
     }
 
 
@@ -72,5 +78,15 @@ public class Server {
         //     return state.getGirls();
     }
 
+    public Room[] getVisibleRooms() {
+        return state.getVisibleRooms();
+    }
 
+    public Room getRoomWithID(int id) {
+        return state.getRoomWithID(id);
+    }
+
+    public Person getPersonWithID(int id) {
+        return state.getPersonWithID(id);
+    }
 }

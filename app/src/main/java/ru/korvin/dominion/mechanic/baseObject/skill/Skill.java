@@ -1,5 +1,7 @@
 package ru.korvin.dominion.mechanic.baseObject.skill;
 
-public abstract class Skill {
+import java.io.Serializable;
+
+public abstract class Skill implements Serializable {
     public abstract int getNameId();
 }

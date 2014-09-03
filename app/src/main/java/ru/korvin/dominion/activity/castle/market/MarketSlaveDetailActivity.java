@@ -1,28 +1,28 @@
-package ru.korvin.dominion.activity.girlinfo;
+package ru.korvin.dominion.activity.castle.market;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import ru.korvin.dominion.R;
 
+import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
 
 /**
- * An activity representing a single GirlInfo detail screen. This
+ * An activity representing a single MarketSlave detail screen. This
  * activity is only used on handset devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a {@link GirlInfoListActivity}.
+ * in a {@link MarketSlaveListActivity}.
  * <p/>
  * This activity is mostly just a 'shell' activity containing nothing
- * more than a {@link GirlInfoDetailFragment}.
+ * more than a {@link MarketSlaveDetailFragment}.
  */
-public class GirlInfoDetailActivity extends Activity {
+public class MarketSlaveDetailActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_girlinfo_detail);
+        setContentView(R.layout.activity_market_slave_detail);
 
         // Show the Up button in the action bar.
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -40,18 +40,14 @@ public class GirlInfoDetailActivity extends Activity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(GirlInfoDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(GirlInfoDetailFragment.ARG_ITEM_ID));
-            GirlInfoDetailFragment fragment = new GirlInfoDetailFragment();
+            arguments.putInt(MarketSlaveDetailFragment.ARG_SLAVE_ID,
+                    getIntent().getExtras().getInt(MarketSlaveDetailFragment.ARG_SLAVE_ID));
+            MarketSlaveDetailFragment fragment = new MarketSlaveDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
-                    .add(R.id.girlinfo_detail_container, fragment)
+                    .add(R.id.marketslave_detail_container, fragment)
                     .commit();
         }
-
-        //GridView gv=(GridView)findViewById(R.id.girl_info_skills_list);
-        // gv.setAdapter(this);
-
     }
 
     @Override
@@ -64,7 +60,8 @@ public class GirlInfoDetailActivity extends Activity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, GirlInfoListActivity.class));
+            navigateUpFromSameTask(this);
+            //navigateUpTo(new Intent(this, MarketSlaveListActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

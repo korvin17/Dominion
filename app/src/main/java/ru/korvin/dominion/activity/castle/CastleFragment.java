@@ -1,20 +1,19 @@
 package ru.korvin.dominion.activity.castle;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import ru.korvin.dominion.R;
-
-import ru.korvin.dominion.activity.castle.dummy.DummyContent;
+import ru.korvin.dominion.dao.GameApplication;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 
 /**
  * A fragment representing a list of Items.
@@ -24,17 +23,7 @@ import ru.korvin.dominion.activity.castle.dummy.DummyContent;
  * <p/>
  */
 public class CastleFragment extends Fragment implements AbsListView.OnItemClickListener {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+    private OnRoomFragmentInteractionListener mListener;
 
     /**
      * The fragment's ListView/GridView.
@@ -66,13 +55,8 @@ public class CastleFragment extends Fragment implements AbsListView.OnItemClickL
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+        mAdapter = new RoomAdapter(getActivity(), GameApplication.getDefaultGameApplication().getServer().getVisibleRooms());
     }
 
     @Override
@@ -94,7 +78,7 @@ public class CastleFragment extends Fragment implements AbsListView.OnItemClickL
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (OnRoomFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -111,9 +95,7 @@ public class CastleFragment extends Fragment implements AbsListView.OnItemClickL
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            mListener.onRoomFragmentInteraction((Room) mAdapter.getItem(position));
         }
     }
 
@@ -140,9 +122,8 @@ public class CastleFragment extends Fragment implements AbsListView.OnItemClickL
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
+    public interface OnRoomFragmentInteractionListener {
+        public void onRoomFragmentInteraction(Room room);
     }
 
 }

@@ -1,0 +1,117 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ru.korvin.dominion.activity.castle.stats.GirlStatsInfoFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="bottom"
+            android:weightSum="1"
+            android:id="@+id/linearLayout">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/GirlInfiHPprogressBar"
+                    android:layout_gravity="center_horizontal"
+                    android:progress="100"
+                    android:secondaryProgress="0"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:focusableInTouchMode="false"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentRight="false"
+                    android:layout_centerVertical="true" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/GirlInfoVigorProgressBar"
+                    android:layout_gravity="center_horizontal"
+                    android:progress="100"
+                    android:secondaryProgress="0"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:focusableInTouchMode="false"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentRight="false"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/GirlInfiHPTextView"
+                    android:layout_margin="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/girl_info_xp_label"
+                    android:id="@+id/GirlInfiHPTextView"
+                    android:layout_alignParentRight="false"
+                    android:layout_toRightOf="@+id/GirlInfiHPprogressBar"
+                    android:layout_alignBaseline="@+id/GirlInfiHPprogressBar"
+                    android:layout_marginRight="5dp"
+                    android:layout_margin="5dp"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/girl_Info_vigor_label"
+                    android:id="@+id/GirlInfoVigorTextView"
+                    android:layout_alignParentRight="false"
+                    android:layout_alignBaseline="@+id/GirlInfiHPprogressBar"
+                    android:layout_toRightOf="@+id/GirlInfoVigorProgressBar"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/girl_info_ability_header"
+                android:id="@+id/girl_info_stats_header"
+                android:layout_gravity="center_horizontal" />
+
+            <GridView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/girl_info_stats_list"
+                android:numColumns="2"
+                android:drawSelectorOnTop="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/game_skills"
+                android:id="@+id/girl_info_skill_header"
+                android:layout_gravity="center_horizontal" />
+
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/girl_info_skills_list"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

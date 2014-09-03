@@ -1,13 +1,11 @@
 package ru.korvin.dominion.activity.girlinfo;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-
 
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
@@ -45,7 +43,7 @@ public class GirlInfoDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-//            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+//            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_SLAVE_ID));
         }
     }
 

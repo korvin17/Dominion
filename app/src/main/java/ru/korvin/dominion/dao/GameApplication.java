@@ -3,14 +3,12 @@ package ru.korvin.dominion.dao;
 import android.app.Application;
 import android.content.SharedPreferences;
 
-import java.util.Calendar;
-
+import ru.korvin.dominion.R;
 import ru.korvin.dominion.dao.storage.DB;
 import ru.korvin.dominion.dao.storage.Storage;
+import ru.korvin.dominion.dao.storage.shell.SaveRecord;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
-import ru.korvin.dominion.mechanic.baseObject.castle.Castle;
-import ru.korvin.dominion.mechanic.baseObject.creature.Player;
 import ru.korvin.dominion.mechanic.server.Server;
 
 public class GameApplication extends Application {
@@ -25,40 +23,36 @@ public class GameApplication extends Application {
         this.dataBase = new DB(getApplicationContext());
         this.preferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
         defaultGameApplication = this;
+        if (!isFirstLaunch()) {
+            long idAutoSave = this.getIdAutoSave();
+            SaveRecord record = this.dataBase.getState(idAutoSave);
+            this.server.setState(record.getState());
+        }
     }
 
     private static final String PREFERENCE_IS_FIRST = "is_first";
+    private static final String PREFERENCE_ID_AUTOSAVE = "autosave id";
 
     public boolean isFirstLaunch() {
         return this.preferences.getBoolean(PREFERENCE_IS_FIRST, true);
     }
 
-    public void setFirstLaunch(boolean firstLaunch) {
+    public long getIdAutoSave() {
+        return this.preferences.getLong(PREFERENCE_ID_AUTOSAVE, SaveRecord.WRONG_ID);
+    }
+
+    public void setFirstLaunch(boolean firstLaunch, long autoSaveID) {
         SharedPreferences.Editor editor = this.preferences.edit();
         editor.putBoolean(PREFERENCE_IS_FIRST, false);
+        editor.putLong(PREFERENCE_ID_AUTOSAVE, autoSaveID);
         editor.commit();
     }
 
 
-    private static final long INITIAL_MONEY = 1000;
-    private static final int INITIAL_HP = 100;
-    private static final int INITIAL_MP = 100;
-    private static final int INITIAL_ENERGY = 100;
-    private static final int INITIAL_ABILITY = 10;
-
-
-    private static final int INITIAL_YEAR = 1308;
-    private static final int INITIAL_MONTH = Calendar.NOVEMBER;
-    private static final int INITIAL_DAY = 16;
-
-
     public void init(String playerName, Sex sex, Race race) {
-        Player player = new Player(playerName, sex, race, INITIAL_MONEY,
-                INITIAL_HP, INITIAL_MP, INITIAL_ENERGY,
-                INITIAL_ABILITY, INITIAL_ABILITY, INITIAL_ABILITY, INITIAL_ABILITY, INITIAL_ABILITY, INITIAL_ABILITY);
-        Castle castle = new Castle();
-        server.initState(player, castle, INITIAL_YEAR, INITIAL_MONTH, INITIAL_DAY);
-        this.setFirstLaunch(false);
+        server.initState(playerName, sex, race);
+        long id = dataBase.saveState(server.getState(), getResources().getString(R.string.autosave));
+        this.setFirstLaunch(false, id);
     }
 
     private Server server;

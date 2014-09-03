@@ -2,7 +2,6 @@ package ru.korvin.dominion.mechanic.baseObject.creature;
 
 import java.io.Serializable;
 
-import ru.korvin.dominion.R;
 import ru.korvin.dominion.mechanic.baseObject.creature.gameClass.Archetype;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
@@ -11,6 +10,7 @@ import ru.korvin.dominion.mechanic.baseObject.skill.SkillList;
 
 public class Creature implements Serializable {
     protected int nameId;
+    protected int id;
     protected Sex sex;
     protected Race race;
     protected Stats stats;
@@ -18,7 +18,8 @@ public class Creature implements Serializable {
     public Archetype archetype;
     protected long money;
 
-    public Creature(int nameId, Sex sex, Race race, Stats stats, SkillList skills) {
+    public Creature(int id, int nameId, Sex sex, Race race, Stats stats, SkillList skills) {
+        this.id = id;
         this.nameId = nameId;
         this.sex = sex;
         this.race = race;
@@ -55,6 +56,30 @@ public class Creature implements Serializable {
 
     public boolean isDied() {
         return stats.hp <= 0;
+    }
+
+    public int getNameId() {
+        return nameId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public long getMoney() {
+        return money;
+    }
+
+    public Stats getStats() {
+        return stats;
     }
 
     public SkillList getSkillList() {

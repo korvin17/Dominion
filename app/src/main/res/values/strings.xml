@@ -28,7 +28,11 @@
     <string name="save">save</string>
     <string name="load">load</string>
     <string name="start">start</string>
+    <string name="autosave">autosave</string>
     <string name="title_activity_introduction_create_avatar">IntroductionCreateAvatarActivity</string>
     <string name="name">name</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_marketslave_list">MarketSlaves</string>
+    <string name="title_marketslave_detail">MarketSlave Detail</string>
 
 </resources>

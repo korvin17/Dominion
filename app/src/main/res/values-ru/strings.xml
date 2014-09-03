@@ -26,5 +26,6 @@
     <string name="save">сохранить</string>
     <string name="load">загрузить</string>
     <string name="start">старт</string>
+    <string name="autosave">автосохранение</string>
     <string name="name">имя</string>
 </resources>

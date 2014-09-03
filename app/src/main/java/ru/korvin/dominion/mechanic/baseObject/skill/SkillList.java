@@ -1,5 +1,6 @@
 package ru.korvin.dominion.mechanic.baseObject.skill;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 import ru.korvin.dominion.mechanic.baseObject.skill.simple.Maid;
 import ru.korvin.dominion.mechanic.baseObject.skill.util.SkillListIterator;
 
-public class SkillList implements Iterable<Skill> {
+public class SkillList implements Serializable, Iterable<Skill> {
 
     protected Skill maid;
 

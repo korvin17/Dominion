@@ -13,20 +13,19 @@ public class SaveRecord {
     private String name;
     private Date date;
     private State state;
-    private long id = -1;
+    private long id = WRONG_ID;
+    public static final int WRONG_ID = -1;
 
-    public SaveRecord(String name, Date date) {
+    public SaveRecord(String name, Date date, State state, long id) {
         this.name = name;
         this.date = date;
-    }
-
-    public SaveRecord(String name, Date date, State state) {
-        this(name, date);
         this.state = state;
+        this.id = id;
     }
 
-    public SaveRecord(String name, Date date, byte[] blob, int id) {
-        this(name, date);
+    public SaveRecord(String name, Date date, byte[] blob, long id) {
+        this.name = name;
+        this.date = date;
         this.id = id;
         if (blob != null) {
             try {

@@ -21,21 +21,53 @@ public class DB {
     private static final String COLUMN_NAME_SAVE = "save";
 
 
-    public void saveState(State state) {
-        SaveRecord saveRecord = new SaveRecord("", new Date(), state);
+    public long saveState(State state, String name) {
+        return saveState(state, name, SaveRecord.WRONG_ID);
+    }
+
+    public long saveState(State state, String name, int id) {
+        SaveRecord saveRecord = new SaveRecord(name, new Date(), state, id);
         SQLiteDatabase base = mDBHelper.getWritableDatabase();
         ContentValues param = new ContentValues();
         param.put(COLUMN_NAME_NAME, saveRecord.getName());
         param.put(COLUMN_NAME_DATE, saveRecord.getDate().getTime());
         param.put(COLUMN_NAME_SAVE, saveRecord.getData());
-        if (saveRecord.getId() != -1)
+        long idSave;
+        if (saveRecord.getId() != SaveRecord.WRONG_ID) {
             base.update(TABLE_NAME_SAVE, null, " id = ?", new String[]{Long.toString(saveRecord.getId())});
-        else
-            base.insert(TABLE_NAME_SAVE, null, param);
+            idSave = id;
+        } else
+            idSave = base.insert(TABLE_NAME_SAVE, null, param);
         base.close();
+        return idSave;
     }
 
-    private static final String[] SELECT_ALL_SAVE_COLUNM = new String[]{COLUMN_NAME_ID, COLUMN_NAME_NAME, COLUMN_NAME_DATE, COLUMN_NAME_SAVE};
+    private static final String[] SELECT_SAVE_DATA = new String[]{COLUMN_NAME_NAME, COLUMN_NAME_DATE, COLUMN_NAME_SAVE};
+    private static final String WHERE_ID = COLUMN_NAME_ID + "= ?";
+
+    public SaveRecord getState(long id) {
+        SQLiteDatabase base = mDBHelper.getReadableDatabase();
+        Cursor cursor = base.query(TABLE_NAME_SAVE, SELECT_SAVE_DATA, WHERE_ID, new String[]{Long.toString(id)}, null, null, null);
+        if (cursor.moveToFirst()) {
+            int id_name = cursor.getColumnIndex(COLUMN_NAME_NAME);
+            int id_date = cursor.getColumnIndex(COLUMN_NAME_DATE);
+            int id_save = cursor.getColumnIndex(COLUMN_NAME_SAVE);
+
+            String name = cursor.getString(id_name);
+            Date date = new Date(cursor.getLong(id_date));
+            byte[] blob = cursor.getBlob(id_save);
+            SaveRecord saveRecord = new SaveRecord(name, date, blob, id);
+            cursor.close();
+            base.close();
+            return saveRecord;
+        } else {
+            cursor.close();
+            base.close();
+            throw new RuntimeException("не найденно сохранение");
+        }
+    }
+
+    private static final String[] SELECT_ALL_SAVE_COLUNM = new String[]{COLUMN_NAME_ID, COLUMN_NAME_NAME, COLUMN_NAME_DATE};
 
     public Cursor getAllState() {
         SQLiteDatabase base = mDBHelper.getReadableDatabase();

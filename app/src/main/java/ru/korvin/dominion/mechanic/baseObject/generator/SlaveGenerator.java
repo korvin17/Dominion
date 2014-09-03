@@ -1,7 +1,5 @@
 package ru.korvin.dominion.mechanic.baseObject.generator;
 
-import ru.korvin.dominion.mechanic.baseObject.creature.Person;
-
 public class SlaveGenerator {
 
     /*
