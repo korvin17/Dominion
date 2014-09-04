@@ -10,7 +10,8 @@ import ru.korvin.dominion.mechanic.baseObject.state.progress.IllegalProgressStat
 import ru.korvin.dominion.mechanic.baseObject.state.progress.Progress;
 
 public abstract class Room implements Serializable {
-    protected List<Person> persons = new ArrayList<Person>();
+    protected List<Person> persons;
+    protected LocationType type;
 
     public RoomProgress doStep(RoomProgress progress) throws IllegalProgressStateException {
         return doStepForEveryOnePerson((RoomProgress) progress);
@@ -37,10 +38,28 @@ public abstract class Room implements Serializable {
         RoomProgress result = new RoomProgress(0);
         result.end();
         return result;
-
     }
 
+    public boolean isVisible() {
+        return type != LocationType.invisibleRoom;
+    }
+
+    public boolean isComplex() {
+        return type == LocationType.complexRoom;
+    }
+
+    public boolean isWork() {
+        return type == LocationType.workRoom;
+    }
+
+
     public int id;
+
+    protected Room(int id, LocationType type) {
+        this.id = id;
+        this.type = type;
+        this.persons = new ArrayList<>();
+    }
 
     public abstract int getNameId();
 

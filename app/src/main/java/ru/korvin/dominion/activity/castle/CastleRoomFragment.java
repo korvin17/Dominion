@@ -10,15 +10,15 @@ import android.view.ViewGroup;
 import ru.korvin.dominion.R;
 
 
-public class RoomFragment extends Fragment {
-    public static RoomFragment newInstance(String param1, String param2) {
-        RoomFragment fragment = new RoomFragment();
+public class CastleRoomFragment extends Fragment {
+    public static CastleRoomFragment newInstance(String param1, String param2) {
+        CastleRoomFragment fragment = new CastleRoomFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public RoomFragment() {
+    public CastleRoomFragment() {
         // Required empty public constructor
     }
 

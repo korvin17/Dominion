@@ -26,12 +26,13 @@
         <activity
             android:name=".activity.main.MainTabActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop" />
         <activity
             android:name=".activity.introduction.IntroductionHistoryActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -53,6 +54,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.korvin.dominion.activity.castle.market.MarketSlaveListActivity" />
+        </activity>
+        <activity
+            android:name=".activity.castle.room.RoomDetailActivity"
+            android:label="@string/title_room_detail">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.korvin.dominion.activity.castle.room.RoomListActivity" />
         </activity>
     </application>
 

@@ -9,18 +9,18 @@ import ru.korvin.dominion.mechanic.baseObject.castle.Castle;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.Player;
-import ru.korvin.dominion.mechanic.baseObject.generator.UniquePersonGenerator;
+import ru.korvin.dominion.mechanic.baseObject.generator.Generator;
 
 
 public class State implements Serializable {
     private Player player;
     private Castle castle;
     private Calendar date;
-    private UniquePersonGenerator generator;
+    private Generator generator;
 
     public State(Player player, int year, int month, int day) {
         this.player = player;
-        this.generator = new UniquePersonGenerator();
+        this.generator = new Generator();
         this.castle = new Castle(generator);
         this.date = GregorianCalendar.getInstance();
         this.date.set(year, month, day);
@@ -29,6 +29,11 @@ public class State implements Serializable {
     public Room[] getVisibleRooms() {
         return castle.getRooms();
     }
+
+    public Room[] getWorkRooms() {
+        return castle.getWorkRooms();
+    }
+
 
     public Room getRoomWithID(int id) {
         return castle.getRoomWithID(id);

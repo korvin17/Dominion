@@ -2,4 +2,6 @@
 <resources>
     <string name="room_castle_name">замок</string>
     <string name="room_market_name">магазин</string>
+    <string name="room_rest_name">отдых</string>
+    <string name="room_maid_name">горничная</string>
 </resources>

@@ -56,7 +56,7 @@ public class CastleFragment extends Fragment implements AbsListView.OnItemClickL
 
         if (getArguments() != null) {
         }
-        mAdapter = new RoomAdapter(getActivity(), GameApplication.getDefaultGameApplication().getServer().getVisibleRooms());
+        mAdapter = new CastleRoomAdapter(getActivity(), GameApplication.getDefaultGameApplication().getServer().getVisibleRooms());
     }
 
     @Override

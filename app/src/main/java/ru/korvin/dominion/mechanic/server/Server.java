@@ -82,6 +82,10 @@ public class Server {
         return state.getVisibleRooms();
     }
 
+    public Room[] getWorkRooms() {
+        return state.getWorkRooms();
+    }
+
     public Room getRoomWithID(int id) {
         return state.getRoomWithID(id);
     }

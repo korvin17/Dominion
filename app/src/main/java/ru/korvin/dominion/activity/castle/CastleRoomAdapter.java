@@ -11,10 +11,10 @@ import android.widget.TextView;
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 
-public class RoomAdapter extends ArrayAdapter<Room> {
+public class CastleRoomAdapter extends ArrayAdapter<Room> {
     protected LayoutInflater layoutInflater;
 
-    public RoomAdapter(Context context, Room[] objects) {
+    public CastleRoomAdapter(Context context, Room[] objects) {
         super(context, R.layout.fragment_room, objects);
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

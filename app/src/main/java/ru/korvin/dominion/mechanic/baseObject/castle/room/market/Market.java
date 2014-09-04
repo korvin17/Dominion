@@ -1,11 +1,12 @@
-package ru.korvin.dominion.mechanic.baseObject.castle.market;
+package ru.korvin.dominion.mechanic.baseObject.castle.room.market;
 
 import java.util.List;
 
 import ru.korvin.dominion.R;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.LocationType;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
-import ru.korvin.dominion.mechanic.baseObject.generator.UniquePersonGenerator;
+import ru.korvin.dominion.mechanic.baseObject.generator.Generator;
 
 public class Market extends Room {
     private static final int nameId = R.string.room_market_name;
@@ -25,7 +26,8 @@ public class Market extends Room {
         return imageId;
     }
 
-    public Market(UniquePersonGenerator generator) {
+    public Market(Generator generator) {
+        super(generator.MARKET_ID, LocationType.complexRoom);
         this.persons = generator.generateAllSlaves();
     }
 }

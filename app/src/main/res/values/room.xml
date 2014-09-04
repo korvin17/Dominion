@@ -2,4 +2,6 @@
 <resources>
     <string name="room_castle_name">castle</string>
     <string name="room_market_name">market</string>
+    <string name="room_rest_name">rest</string>
+    <string name="room_maid_name">maid</string>
 </resources>

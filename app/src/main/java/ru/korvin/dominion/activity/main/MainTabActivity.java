@@ -22,6 +22,7 @@ import java.util.Locale;
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.activity.castle.CastleFragment;
 import ru.korvin.dominion.activity.castle.market.MarketSlaveListActivity;
+import ru.korvin.dominion.activity.castle.room.WorkRoomMainFragment;
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.dao.storage.DB;
 import ru.korvin.dominion.dao.storage.shell.SaveRecord;
@@ -169,10 +170,13 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            if (position == 1) {
-                return CastleFragment.newInstance();
-            } else {
-                return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case 1:
+                    return CastleFragment.newInstance();
+                case 2:
+                    return WorkRoomMainFragment.newInstance();
+                default:
+                    return PlaceholderFragment.newInstance(position + 1);
             }
         }
 

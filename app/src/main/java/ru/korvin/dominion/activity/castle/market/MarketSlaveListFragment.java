@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import ru.korvin.dominion.activity.main.MainTabActivity;
 import ru.korvin.dominion.dao.GameApplication;
-import ru.korvin.dominion.mechanic.baseObject.castle.market.Market;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.market.Market;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 
 /**
@@ -22,8 +22,6 @@ import ru.korvin.dominion.mechanic.baseObject.creature.Person;
  * interface.
  */
 public class MarketSlaveListFragment extends ListFragment {
-
-
     private MarketCallbacks mCallbacks = null;
     private int mActivatedPosition = ListView.INVALID_POSITION;
     private ArrayAdapter<Person> adapter;
