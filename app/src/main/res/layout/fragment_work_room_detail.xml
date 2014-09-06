@@ -14,15 +14,15 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView" />
+            android:id="@+id/work_room_image_view" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
-            android:id="@+id/textView"
-            android:layout_toRightOf="@+id/imageView" />
+            android:id="@+id/work_room_text_view"
+            android:layout_toRightOf="@+id/work_room_image_view" />
     </RelativeLayout>
 
     <LinearLayout
@@ -33,12 +33,12 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listView" />
+            android:id="@+id/work_room_girl_rest_list_view" />
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listView2" />
+            android:id="@+id/work_room_girl_work_list_view" />
 
     </LinearLayout>
 

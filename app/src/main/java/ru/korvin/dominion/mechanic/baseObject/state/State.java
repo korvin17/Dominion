@@ -4,9 +4,11 @@ package ru.korvin.dominion.mechanic.baseObject.state;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.Castle;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Rest;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.Player;
 import ru.korvin.dominion.mechanic.baseObject.generator.Generator;
@@ -17,6 +19,7 @@ public class State implements Serializable {
     private Castle castle;
     private Calendar date;
     private Generator generator;
+    private Rest rest;
 
     public State(Player player, int year, int month, int day) {
         this.player = player;
@@ -39,6 +42,10 @@ public class State implements Serializable {
         return castle.getRoomWithID(id);
     }
 
+    public Rest getRest() {
+        return this.castle.getRest();
+    }
+
     public Person getPersonWithID(int id) {
         return generator.getPersonWithID(id);
     }
@@ -51,15 +58,10 @@ public class State implements Serializable {
 
     public Collection<Quest> getQuests() {
         return null;
-    }
-
-    public List<Person> getGirls() {
-        return girls;
-    }
-
-    public List<Room> getRooms() {
-        return rooms;
     }*/
+    public List<Person> getAllPerson() {
+        return null;
+    }
     public Player getPlayer() {
         return player;
     }

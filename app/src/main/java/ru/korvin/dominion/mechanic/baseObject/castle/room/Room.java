@@ -52,16 +52,31 @@ public abstract class Room implements Serializable {
         return type == LocationType.workRoom;
     }
 
+    public List<Person> getPersons() {
+        return persons;
+    }
+
+    public void addPerson(Person person) {
+        this.persons.add(person);
+    }
+
+    public void deletePerson(Person person) {
+        this.persons.remove(person);
+    }
+
+
+    public void initateNewDay() {
+
+    }
 
     public int id;
-
     protected Room(int id, LocationType type) {
         this.id = id;
         this.type = type;
         this.persons = new ArrayList<>();
     }
-
     public abstract int getNameId();
 
     public abstract int getImageId();
+
 }

@@ -6,12 +6,14 @@ import java.util.logging.Logger;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Rest;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.Player;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
 import ru.korvin.dominion.mechanic.baseObject.state.State;
 import ru.korvin.dominion.mechanic.baseObject.state.progress.IllegalProgressStateException;
+import ru.korvin.dominion.mechanic.baseObject.state.progress.PersonProgress;
 
 public class Server {
     protected State state;
@@ -34,23 +36,54 @@ public class Server {
 
 
     public ServerProgress doStep(ServerProgress progress) throws IllegalProgressStateException {
-        if (progress.isReady()) {
+        if (progress == null) {
+            progress = new ServerProgress();
             initiateNewDay(progress);
-            progress.startExecute();
         }
-        boolean finished = true;
-        for (Room room : progress.roomProgresses.keySet()) {
-            RoomProgress roomProgress = progress.roomProgresses.get(room);
-            if (roomProgress.isReady() || roomProgress.isExecute()) {
-                RoomProgress newProgress = room.doStep(roomProgress);
-                if (!newProgress.isFinished()) finished = false;
-                progress.roomProgresses.put(room, newProgress);
-            }
-        }
-        if (finished)
-            progress.finish();
+        if ((progress = doPersonAtBeginDay(progress)).isNeedShowActiity())
+            return progress;
+        if ((progress = doRoomAtBeginDay(progress)).isNeedShowActiity())
+            return progress;
+        if ((progress = doRoomNextDay(progress)).isNeedShowActiity())
+            return progress;
+        if ((progress = doRoomAtEndDay(progress)).isNeedShowActiity())
+            return progress;
+        if ((progress = doPersonAtEndDay(progress)).isNeedShowActiity())
+            return progress;
+        progress.finish();
         return progress;
     }
+
+    public ServerProgress doPersonAtBeginDay(ServerProgress serverProgress) {
+        if (serverProgress.finishBeginPerson) return serverProgress;
+        for (Person person : serverProgress.personProgresses.keySet()) {
+            PersonProgress personProgress = serverProgress.personProgresses.get(person);
+            personProgress = person.nextDayBegin(personProgress);
+            serverProgress.personProgresses.put(person, personProgress);
+            if (personProgress.isNeedShowActiity())
+                serverProgress.setEvent(personProgress.getEvent());
+            return serverProgress;
+        }
+        serverProgress.finishBeginPerson = true;
+        return serverProgress;
+    }
+
+    public ServerProgress doPersonAtEndDay(ServerProgress progress) {
+        return progress;
+    }
+
+    public ServerProgress doRoomAtBeginDay(ServerProgress progress) {
+        return progress;
+    }
+
+    public ServerProgress doRoomNextDay(ServerProgress progress) {
+        return progress;
+    }
+
+    public ServerProgress doRoomAtEndDay(ServerProgress progress) {
+        return progress;
+    }
+
 
     public ServerProgress doStepSafe(ServerProgress progress) {
         try {
@@ -65,7 +98,15 @@ public class Server {
     }
 
     private void initiateNewDay(ServerProgress progress) {
-
+        for (Person person : state.getAllPerson()) {
+            person.initateNewDay();
+        }
+        for (Room room : state.getVisibleRooms()) {
+            room.initateNewDay();
+        }
+        for (Room room : state.getWorkRooms()) {
+            room.initateNewDay();
+        }
     }
 
 
@@ -88,6 +129,10 @@ public class Server {
 
     public Room getRoomWithID(int id) {
         return state.getRoomWithID(id);
+    }
+
+    public Rest getRest() {
+        return state.getRest();
     }
 
     public Person getPersonWithID(int id) {

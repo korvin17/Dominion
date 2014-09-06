@@ -66,6 +66,7 @@ public class MarketSlaveListFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
+        super.onListItemClick(listView, view, position, id);
         if (mCallbacks != null)
             mCallbacks.onSlaveSelected(adapter.getItem(position));
     }

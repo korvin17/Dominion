@@ -62,6 +62,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.korvin.dominion.activity.castle.room.RoomListActivity" />
         </activity>
+        <activity
+            android:name=".activity.main.NextDayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_next_day"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

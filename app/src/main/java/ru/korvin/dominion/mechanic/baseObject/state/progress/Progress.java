@@ -68,6 +68,7 @@ public class Progress {
     }
 
     public void setEvent(Event event) {
+        this.needShowActiity = true;
         this.event = event;
     }
 }

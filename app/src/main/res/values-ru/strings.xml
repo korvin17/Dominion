@@ -27,5 +27,6 @@
     <string name="load">загрузить</string>
     <string name="start">старт</string>
     <string name="autosave">автосохранение</string>
+    <string name="next_day">next day</string>
     <string name="name">имя</string>
 </resources>
