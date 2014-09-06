@@ -22,6 +22,7 @@ import java.util.Locale;
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.activity.castle.CastleFragment;
 import ru.korvin.dominion.activity.castle.market.MarketSlaveListActivity;
+import ru.korvin.dominion.activity.castle.room.WorkRoomListFragment;
 import ru.korvin.dominion.activity.castle.room.WorkRoomMainFragment;
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.dao.storage.DB;
@@ -30,7 +31,7 @@ import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.state.State;
 
 
-public class MainTabActivity extends Activity implements ActionBar.TabListener, CastleFragment.OnRoomFragmentInteractionListener {
+public class MainTabActivity extends Activity implements ActionBar.TabListener, CastleFragment.OnRoomFragmentInteractionListener, WorkRoomListFragment.Callbacks {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -156,6 +157,12 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
         }
     }
 
+    @Override
+    public void onWorkRoomSelected(Room room) {
+        ((WorkRoomMainFragment) active_fragment).onWorkRoomSelected(room);
+    }
+
+    private Fragment active_fragment = null;
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -172,9 +179,16 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 1:
+                    active_fragment = getFragmentManager().findFragmentById(R.layout.fragment_castle);
+                    if (active_fragment != null)
+                        return active_fragment;
                     return CastleFragment.newInstance();
                 case 2:
-                    return WorkRoomMainFragment.newInstance();
+                    active_fragment = getFragmentManager().findFragmentById(R.layout.fragment_work_room_twopane);
+                    if (active_fragment != null)
+                        return active_fragment;
+                    active_fragment = WorkRoomMainFragment.newInstance();
+                    return active_fragment;
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
