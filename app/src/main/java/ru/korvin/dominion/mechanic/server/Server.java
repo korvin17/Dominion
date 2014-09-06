@@ -138,4 +138,9 @@ public class Server {
     public Person getPersonWithID(int id) {
         return state.getPersonWithID(id);
     }
+
+
+    public void buyPerson(Person person) {
+
+    }
 }

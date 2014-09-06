@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.activity.castle.stats.GirlStatsInfoFragment;
@@ -17,10 +18,10 @@ import ru.korvin.dominion.mechanic.baseObject.creature.Person;
  * in two-pane mode (on tablets) or a {@link MarketSlaveDetailActivity}
  * on handsets.
  */
-public class MarketSlaveDetailFragment extends Fragment {
+public class MarketSlaveDetailFragment extends Fragment implements View.OnClickListener {
     public static final String ARG_SLAVE_ID = "slave_id";
     private Person slave;
-
+    private Button mBuyButton;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -47,6 +48,14 @@ public class MarketSlaveDetailFragment extends Fragment {
             statsInfoFragment.setPerson(slave);
         }
 
+        mBuyButton = (Button) rootView.findViewById(R.id.market_slave_buy_button);
+        mBuyButton.setOnClickListener(this);
         return rootView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        GameApplication.getDefaultGameApplication().getServer().buyPerson(slave);
+        mBuyButton.setEnabled(false);
     }
 }
