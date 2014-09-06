@@ -42,6 +42,7 @@ public class WorkRoomMainFragment extends Fragment
      * device.
      */
     private boolean mTwoPane;
+    private View mView;
 
     public static WorkRoomMainFragment newInstance() {
         WorkRoomMainFragment fragment = new WorkRoomMainFragment();
@@ -58,9 +59,10 @@ public class WorkRoomMainFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_work_room_twopane, container, false);
+        if (mView == null)
+            mView = inflater.inflate(R.layout.fragment_work_room_twopane, container, false);
         // Show the Up button in the action bar.
-        if (view.findViewById(R.id.work_room_detail_container) != null) {
+        if (mView.findViewById(R.id.work_room_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-large and
             // res/values-sw600dp). If this view is present, then the
@@ -73,7 +75,7 @@ public class WorkRoomMainFragment extends Fragment
                     .setActivateOnItemClick(true);
         }
 
-        return view;
+        return mView;
     }
 
     /**
