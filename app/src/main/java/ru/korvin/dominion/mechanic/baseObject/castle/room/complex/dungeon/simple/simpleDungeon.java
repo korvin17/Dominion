@@ -3,6 +3,7 @@ package ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.simpl
 import java.util.LinkedList;
 import java.util.List;
 
+import ru.korvin.dominion.mechanic.baseObject.castle.room.LocationType;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.Dangeon;
 import ru.korvin.dominion.mechanic.baseObject.creature.Creature;
@@ -14,6 +15,10 @@ import ru.korvin.dominion.mechanic.util.Util;
 public abstract class simpleDungeon extends Dangeon {
     private Group adventure;
     private Group mob;
+
+    public simpleDungeon(int id, LocationType type, int level) {
+        super(id, type, level);
+    }
 
     @Override
     public RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress) throws IllegalProgressStateException {

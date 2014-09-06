@@ -1,12 +1,14 @@
 package ru.korvin.dominion.activity.castle.room;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import ru.korvin.dominion.R;
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 
@@ -49,7 +51,6 @@ public class WorkRoomListFragment extends ListFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
         // Activities containing this fragment must implement its callbacks.
         if (!(activity instanceof Callbacks)) {
             throw new IllegalStateException("Activity must implement fragment's callbacks.");
@@ -68,7 +69,7 @@ public class WorkRoomListFragment extends ListFragment {
     public void onListItemClick(ListView listView, View view, int position, long id) {
         super.onListItemClick(listView, view, position, id);
         if (mCallbacks != null)
-            mCallbacks.onRoomSelected(adapter.getItem(position));
+            mCallbacks.onWorkRoomSelected(adapter.getItem(position));
     }
 
     @Override
@@ -103,7 +104,7 @@ public class WorkRoomListFragment extends ListFragment {
     }
 
     public interface Callbacks {
-        public void onRoomSelected(Room room);
+        public void onWorkRoomSelected(Room room);
     }
 
     public WorkRoomListFragment() {

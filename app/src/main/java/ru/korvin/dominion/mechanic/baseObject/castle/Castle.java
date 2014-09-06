@@ -32,8 +32,8 @@ public class Castle implements Serializable {
             if (room.isVisible() && room.isWork()) {
                 w.add(room);
             }
-            this.workRoom = (Room[]) w.toArray();
-            this.complexRoom = (Room[]) c.toArray();
+            this.workRoom = (Room[]) w.toArray(new Room[w.size()]);
+            this.complexRoom = (Room[]) c.toArray(new Room[c.size()]);
         }
     }
 
