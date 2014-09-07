@@ -27,7 +27,7 @@ import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
  * to listen for item selections.
  */
 public class MarketSlaveListActivity extends Activity
-        implements MarketSlaveListFragment.MarketCallbacks {
+        implements MarketSlaveListFragment.MarketCallbacks,MarketSlaveDetailFragment.Callback {
     private static final String STATE_ACTIVATED_POSITION = "activated_position";
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -42,7 +42,7 @@ public class MarketSlaveListActivity extends Activity
         // Show the Up button in the action bar.
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (findViewById(R.id.marketslave_detail_container) != null) {
+        if (findViewById(R.id.market_slave_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-large and
             // res/values-sw600dp). If this view is present, then the
@@ -52,11 +52,11 @@ public class MarketSlaveListActivity extends Activity
             // In two-pane mode, list items should be given the
             // 'activated' state when touched.
             ((MarketSlaveListFragment) getFragmentManager()
-                    .findFragmentById(R.id.marketslave_list))
+                    .findFragmentById(R.id.market_slave_list))
                     .setActivateOnItemClick(true);
             int active_position = savedInstanceState != null ? savedInstanceState.getInt(STATE_ACTIVATED_POSITION, 0) : 0;
             ((MarketSlaveListFragment) getFragmentManager()
-                    .findFragmentById(R.id.marketslave_list))
+                    .findFragmentById(R.id.market_slave_list))
                     .initPosition(active_position);
         }
     }
@@ -86,7 +86,7 @@ public class MarketSlaveListActivity extends Activity
             MarketSlaveDetailFragment fragment = new MarketSlaveDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
-                    .replace(R.id.marketslave_detail_container, fragment)
+                    .replace(R.id.market_slave_detail_container, fragment)
                     .commit();
 
         } else {
@@ -102,8 +102,15 @@ public class MarketSlaveListActivity extends Activity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         int active_position = ((MarketSlaveListFragment) getFragmentManager()
-                .findFragmentById(R.id.marketslave_list))
+                .findFragmentById(R.id.market_slave_list))
                 .getActivatedPosition();
         outState.putInt(STATE_ACTIVATED_POSITION, active_position);
+    }
+
+    @Override
+    public boolean buyPerson(Person person) {
+        ((MarketSlaveListFragment) getFragmentManager()
+                .findFragmentById(R.id.market_slave_list)).buyPerson(person);
+        return true;
     }
 }

@@ -2,9 +2,11 @@ package ru.korvin.dominion.activity.main;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,8 +17,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import ru.korvin.dominion.R;
@@ -26,12 +30,10 @@ import ru.korvin.dominion.activity.castle.room.WorkRoomListFragment;
 import ru.korvin.dominion.activity.castle.room.WorkRoomMainFragment;
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.dao.storage.DB;
-import ru.korvin.dominion.dao.storage.shell.SaveRecord;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
-import ru.korvin.dominion.mechanic.baseObject.state.State;
 
 
-public class MainTabActivity extends Activity implements ActionBar.TabListener, CastleFragment.OnRoomFragmentInteractionListener, WorkRoomListFragment.Callbacks {
+public class MainTabActivity extends Activity implements ActionBar.TabListener, CastleFragment.OnRoomFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -97,6 +99,106 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
         return true;
     }
 
+    public boolean save(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.main_tab_save_title);
+
+        Cursor cursor=mDataBase.getAllState();
+        ArrayList<String> items=new ArrayList<>(cursor.getCount()+1);
+        final ArrayList<Long> ids=new ArrayList<>(cursor.getCount()+1);
+
+        items.add(getString(R.string.new_save));
+        if (cursor.moveToFirst()){
+            do{
+                items.add(cursor.getString(cursor.getColumnIndex(DB.COLUMN_NAME_NAME)));
+                ids.add(cursor.getLong(cursor.getColumnIndex(DB.COLUMN_NAME_ID)));
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        final Activity activity=this;
+        final String[] names=items.toArray(new String[0]);
+        builder.setItems(names,new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(which==0){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                    builder.setTitle(R.string.main_tab_save_edit_name_title);
+                    final EditText input = new EditText(activity);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT);
+                    input.setLayoutParams(lp);
+                    builder.setView(input);
+                    builder.setPositiveButton(android.R.string.yes,new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                             GameApplication.getDefaultGameApplication().saveState(input.getText().toString());
+                        }
+                    });
+                    builder.setNegativeButton(android.R.string.cancel,new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String name = names[which];
+                    long id= ids.get(which-1);
+                    GameApplication.getDefaultGameApplication().saveState(name, id);
+                }
+            }
+        });
+
+        builder.setCancelable(true);
+        builder.show();
+        return  true;
+      }
+
+
+    public boolean load(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.main_tab_load_title);
+        final Cursor cursor=mDataBase.getAllState();
+        builder.setCursor(cursor,new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                cursor.moveToPosition(which);
+                long id = cursor.getLong(cursor.getColumnIndex(DB.COLUMN_NAME_ID));
+                GameApplication.getDefaultGameApplication().loadSave(id);
+                cursor.close();
+                recreate();
+            }
+        }, DB.COLUMN_NAME_NAME);
+
+        /*
+        builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+                boolean buy=GameApplication.getDefaultServer().buyPerson(slave);
+                mBuyButton.setEnabled(!buy);
+                if(buy)
+                    callback.buyPerson(slave);
+            }
+        });
+        builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+
+            }
+        });*/
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                cursor.close();
+            }
+        });
+        builder.setCancelable(true);
+        builder.show();
+        return  true;
+    }
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -107,22 +209,9 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
             case R.id.main_tab_settings:
                 return true;
             case R.id.main_tab_save:
-                State state = ((GameApplication) getApplication()).getServer().getState();
-                mDataBase.saveState(state, "test");
-                return true;
+                return save();
             case R.id.main_tab_load:
-                Cursor cursor = mDataBase.getAllState();
-                if (cursor.moveToFirst()) {
-                    do {
-                        int name = cursor.getColumnIndex("name");
-                        String str = cursor.getString(name);
-                        int save = cursor.getColumnIndex("save");
-                        int date = cursor.getColumnIndex("date");
-                        SaveRecord record = new SaveRecord(str, new Date(cursor.getLong(date)), cursor.getBlob(save), 0);
-                        System.out.print(str);
-                    } while (cursor.moveToNext());
-                }
-                return true;
+                return load();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -158,8 +247,9 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
     }
 
     @Override
-    public void onWorkRoomSelected(Room room) {
-        ((WorkRoomMainFragment) active_fragment).onWorkRoomSelected(room);
+    public void recreate() {
+        mDataBase.close();
+        super.recreate();
     }
 
     private Fragment active_fragment = null;
@@ -179,16 +269,9 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 1:
-                    active_fragment = getFragmentManager().findFragmentById(R.layout.fragment_castle);
-                    if (active_fragment != null)
-                        return active_fragment;
-                    return CastleFragment.newInstance();
+                    return WorkRoomMainFragment.newInstance();
                 case 2:
-                    active_fragment = getFragmentManager().findFragmentById(R.layout.fragment_work_room_twopane);
-                    if (active_fragment != null)
-                        return active_fragment;
-                    active_fragment = WorkRoomMainFragment.newInstance();
-                    return active_fragment;
+                    return CastleFragment.newInstance();
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
@@ -209,7 +292,7 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
                 case 1:
                     return getString(R.string.room_castle_name).toUpperCase(l);
                 case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
+                    return getString(R.string.tab_world_name).toUpperCase(l);
             }
             return null;
         }

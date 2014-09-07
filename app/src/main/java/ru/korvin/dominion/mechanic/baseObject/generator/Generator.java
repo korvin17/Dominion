@@ -11,6 +11,8 @@ import ru.korvin.dominion.mechanic.baseObject.castle.room.market.Market;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Maid;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Rest;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
+import ru.korvin.dominion.mechanic.baseObject.creature.npc.person.Alleyne;
+import ru.korvin.dominion.mechanic.baseObject.creature.npc.person.Nuliza;
 import ru.korvin.dominion.mechanic.baseObject.creature.npc.person.Saber;
 
 public class Generator implements Serializable {
@@ -20,6 +22,9 @@ public class Generator implements Serializable {
         this.persons = new HashMap<>();
         int increment_girl = 0;
         SABER_ID = increment_girl++;
+        ALLEYNE_ID=increment_girl++;
+        NULIZA_ID=increment_girl++;
+
 
         int increment_room = 0;
         REST_ID = increment_room++;
@@ -45,6 +50,8 @@ public class Generator implements Serializable {
     public List<Person> generateAllSlaves() {
         ArrayList<Person> result = new ArrayList<>(1);
         result.add(getSaber());
+        result.add(getAlleyne());
+        result.add(getNuliza());
         return result;
     }
 
@@ -56,10 +63,29 @@ public class Generator implements Serializable {
         }
         return person;
     }
+    public Person getAlleyne() {
+        Person person = persons.get(ALLEYNE_ID);
+        if (person == null) {
+            person = new Alleyne(ALLEYNE_ID);
+            persons.put(ALLEYNE_ID, person);
+        }
+        return person;
+    }
+    public Person getNuliza() {
+        Person person = persons.get(NULIZA_ID);
+        if (person == null) {
+            person = new Nuliza(NULIZA_ID);
+            persons.put(NULIZA_ID, person);
+        }
+        return person;
+    }
 
     public final int SABER_ID;
+    public final int NULIZA_ID;
+    public final int ALLEYNE_ID;
 
     public final int REST_ID;
     public final int MARKET_ID;
     public final int MAID_ID;
+
 }

@@ -60,6 +60,11 @@ public class MarketSlaveListFragment extends ListFragment {
         mCallbacks = null;
     }
 
+    public void buyPerson(Person person) {
+        adapter.remove(person);
+
+    }
+
     public interface MarketCallbacks {
         public void onSlaveSelected(Person slave);
     }

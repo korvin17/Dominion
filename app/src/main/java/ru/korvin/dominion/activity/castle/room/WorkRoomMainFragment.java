@@ -3,20 +3,12 @@ package ru.korvin.dominion.activity.castle.room;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
-
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.ListAdapter;
 
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
-
-import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
 
 /**
  * An activity representing a list of Rooms. This activity
@@ -74,7 +66,9 @@ public class WorkRoomMainFragment extends Fragment
                     .findFragmentById(R.id.room_list))
                     .setActivateOnItemClick(true);
         }
-
+        ((WorkRoomListFragment) getFragmentManager()
+                .findFragmentById(R.id.room_list))
+                .setCallbacks(this);
         return mView;
     }
 

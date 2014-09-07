@@ -12,4 +12,8 @@ public class Nuliza extends Person {
         super(id, R.string.creature_Nuliza_name, Sex.female, Race.Human, new Stats(R.array.creature_Saber_stats), new SkillList());
     }
 
+    @Override
+    public int getImageMarketSlave() {
+        return R.drawable.girl_nuliza_market;
+    }
 }

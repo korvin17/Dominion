@@ -8,6 +8,8 @@ import java.util.List;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.Castle;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.market.Market;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Maid;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Rest;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.Player;
@@ -46,6 +48,15 @@ public class State implements Serializable {
         return this.castle.getRest();
     }
 
+    public Market getMarket() {
+        return castle.getMarket();
+    }
+
+    public Maid getMaid() {
+        return castle.getMaid();
+    }
+
+
     public Person getPersonWithID(int id) {
         return generator.getPersonWithID(id);
     }
@@ -62,8 +73,13 @@ public class State implements Serializable {
     public List<Person> getAllPerson() {
         return null;
     }
+
     public Player getPlayer() {
         return player;
+    }
+
+    public Generator getGenerator() {
+        return generator;
     }
 
 }

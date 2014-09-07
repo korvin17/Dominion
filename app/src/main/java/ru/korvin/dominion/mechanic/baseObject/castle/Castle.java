@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-import ru.korvin.dominion.mechanic.baseObject.castle.room.market.Market;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.market.Market;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Maid;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Rest;
 import ru.korvin.dominion.mechanic.baseObject.generator.Generator;

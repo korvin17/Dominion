@@ -45,7 +45,7 @@ public class MarketSlaveDetailActivity extends Activity {
             MarketSlaveDetailFragment fragment = new MarketSlaveDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
-                    .add(R.id.marketslave_detail_container, fragment)
+                    .add(R.id.market_slave_detail_container, fragment)
                     .commit();
         }
     }

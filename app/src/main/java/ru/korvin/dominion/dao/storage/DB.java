@@ -15,17 +15,17 @@ import ru.korvin.dominion.mechanic.baseObject.state.State;
 public class DB {
 
     private static final String TABLE_NAME_SAVE = "save";
-    private static final String COLUMN_NAME_ID = "_id";
-    private static final String COLUMN_NAME_NAME = "name";
+    public static final String COLUMN_NAME_ID = "_id";
+    public static final String COLUMN_NAME_NAME = "name";
     private static final String COLUMN_NAME_DATE = "date";
     private static final String COLUMN_NAME_SAVE = "save";
-
+    private static final String DECS=" desc";
 
     public long saveState(State state, String name) {
         return saveState(state, name, SaveRecord.WRONG_ID);
     }
 
-    public long saveState(State state, String name, int id) {
+    public long saveState(State state, String name, long id) {
         SaveRecord saveRecord = new SaveRecord(name, new Date(), state, id);
         SQLiteDatabase base = mDBHelper.getWritableDatabase();
         ContentValues param = new ContentValues();
@@ -34,7 +34,7 @@ public class DB {
         param.put(COLUMN_NAME_SAVE, saveRecord.getData());
         long idSave;
         if (saveRecord.getId() != SaveRecord.WRONG_ID) {
-            base.update(TABLE_NAME_SAVE, null, " id = ?", new String[]{Long.toString(saveRecord.getId())});
+            base.update(TABLE_NAME_SAVE, param, COLUMN_NAME_ID +" = ?", new String[]{Long.toString(saveRecord.getId())});
             idSave = id;
         } else
             idSave = base.insert(TABLE_NAME_SAVE, null, param);
@@ -71,7 +71,7 @@ public class DB {
 
     public Cursor getAllState() {
         SQLiteDatabase base = mDBHelper.getReadableDatabase();
-        return base.query(TABLE_NAME_SAVE, SELECT_ALL_SAVE_COLUNM, null, null, null, null, COLUMN_NAME_DATE);
+        return base.query(TABLE_NAME_SAVE, SELECT_ALL_SAVE_COLUNM, null, null, null, null, COLUMN_NAME_DATE+DECS);
     }
 
     private DBHelper mDBHelper;

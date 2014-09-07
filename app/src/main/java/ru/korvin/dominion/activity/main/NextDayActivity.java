@@ -1,7 +1,5 @@
 package ru.korvin.dominion.activity.main;
 
-import ru.korvin.dominion.activity.main.util.SystemUiHider;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
@@ -11,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import ru.korvin.dominion.R;
+import ru.korvin.dominion.activity.main.util.SystemUiHider;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

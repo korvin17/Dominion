@@ -16,6 +16,13 @@ public class GirlStatsInfoFragment extends Fragment {
     private Person person;
     private LayoutInflater inflater;
 
+
+    public static GirlStatsInfoFragment newInstance(Person person){
+        GirlStatsInfoFragment fragment=new GirlStatsInfoFragment();
+        fragment.person=person;
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

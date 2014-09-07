@@ -14,4 +14,14 @@ public class Player extends Creature {
         this.name = name;
         this.money = money;
     }
+
+    public boolean spendMoney(Long cost){
+        if(this.money>cost) {
+            money -= cost;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

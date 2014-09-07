@@ -5,7 +5,8 @@ import java.util.Collection;
 import java.util.logging.Logger;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
-import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.market.Market;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Maid;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Rest;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.Player;
@@ -99,7 +100,7 @@ public class Server {
 
     private void initiateNewDay(ServerProgress progress) {
         for (Person person : state.getAllPerson()) {
-            person.initateNewDay();
+            person.initiateNewDay();
         }
         for (Room room : state.getVisibleRooms()) {
             room.initateNewDay();
@@ -134,13 +135,26 @@ public class Server {
     public Rest getRest() {
         return state.getRest();
     }
+    public Market getMarket() {
+        return state.getMarket();
+    }
+    public Maid getMaid(){return state.getMaid();}
+
 
     public Person getPersonWithID(int id) {
         return state.getPersonWithID(id);
     }
 
 
-    public void buyPerson(Person person) {
-
+    public boolean buyPerson(Person person) {
+        if(
+            state.getPlayer().spendMoney((long) person.cost)) {
+            getMarket().deletePerson(person);
+            getRest().addPerson(person);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

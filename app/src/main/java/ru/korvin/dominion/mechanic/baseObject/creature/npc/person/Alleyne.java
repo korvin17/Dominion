@@ -11,5 +11,10 @@ public class Alleyne extends Person {
     public Alleyne(int id) {
         super(id, R.string.creature_Alleyne_name, Sex.female, Race.Elf, new Stats(R.array.creature_Saber_stats), new SkillList());
     }
+
+    @Override
+    public int getImageMarketSlave() {
+        return R.drawable.girl_alleyne;
+    }
 }
 

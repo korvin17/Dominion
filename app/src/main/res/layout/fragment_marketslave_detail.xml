@@ -10,32 +10,43 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight=".2">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_weight="0.6"
+            android:layout_weight=".6"
             android:id="@+id/market_slave_image_view"
             android:src="@drawable/slave_market_2"
-            android:layout_height="fill_parent" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="top" />
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_weight=".2"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_weight="0.2"
+            android:layout_width="fill_parent"
+            android:layout_weight=".2"
             android:layout_height="wrap_content"
             android:text="@string/buy"
             android:id="@+id/market_slave_buy_button"
-            android:layout_gravity="center_horizontal" />
-        />
+            android:layout_gravity="top|center_horizontal" />
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_weight=".2"/>
     </LinearLayout>
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="ru.korvin.dominion.activity.castle.stats.GirlStatsInfoFragment"
-        tools:layout="@layout/fragment_girl_stats_info"
-        android:id="@+id/market_slave_girl_stats" />
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/market_slave_girl_stats_container"
+        android:layout_weight=".2"></FrameLayout>
+
 
 </LinearLayout>

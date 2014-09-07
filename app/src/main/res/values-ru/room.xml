@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="main_tab_save_title">Сохранить</string>
+    <string name="main_tab_save_edit_name_title">Введите название</string>
+
+    <string name="main_tab_load_title">Загрузить</string>
+
     <string name="room_castle_name">замок</string>
     <string name="room_market_name">магазин</string>
+    <string name="room_market_buy_title">покупка</string>
+    <string name="room_market_buy_message">Желаете купить %1$s за %2$d?</string>
     <string name="room_rest_name">отдых</string>
     <string name="room_maid_name">горничная</string>
+    <string name="tab_world_name">Мир</string>
 </resources>

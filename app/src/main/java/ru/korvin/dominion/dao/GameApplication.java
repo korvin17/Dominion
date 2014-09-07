@@ -25,9 +25,19 @@ public class GameApplication extends Application {
         defaultGameApplication = this;
         if (!isFirstLaunch()) {
             long idAutoSave = this.getIdAutoSave();
-            SaveRecord record = this.dataBase.getState(idAutoSave);
-            this.server.setState(record.getState());
+            loadSave(idAutoSave);
         }
+    }
+    public void loadSave(long idSave){
+        SaveRecord record = this.dataBase.getState(idSave);
+        this.server.setState(record.getState());
+    }
+    public long saveState(String name,long idSave){
+        return dataBase.saveState(server.getState(),name,idSave);
+    }
+    public long saveState(String name){
+
+        return dataBase.saveState(server.getState(), name);
     }
 
     private static final String PREFERENCE_IS_FIRST = "is_first";
@@ -51,7 +61,7 @@ public class GameApplication extends Application {
 
     public void init(String playerName, Sex sex, Race race) {
         server.initState(playerName, sex, race);
-        long id = dataBase.saveState(server.getState(), getResources().getString(R.string.autosave));
+        long id = saveState(getResources().getString(R.string.autosave));
         this.setFirstLaunch(false, id);
     }
 
@@ -67,6 +77,10 @@ public class GameApplication extends Application {
 
     public Server getServer() {
         return server;
+    }
+
+    public static Server getDefaultServer() {
+        return getDefaultGameApplication().getServer();
     }
 
     public static GameApplication getDefaultGameApplication() {

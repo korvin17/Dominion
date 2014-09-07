@@ -1,9 +1,8 @@
 package ru.korvin.dominion.activity.castle.room;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
-
 import android.view.MenuItem;
 
 import ru.korvin.dominion.R;
@@ -40,8 +39,8 @@ public class RoomDetailActivity extends Activity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(RoomDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(RoomDetailFragment.ARG_ITEM_ID));
+            arguments.putString(RoomDetailFragment.ARG_ROOM_ID,
+                    getIntent().getStringExtra(RoomDetailFragment.ARG_ROOM_ID));
             RoomDetailFragment fragment = new RoomDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
