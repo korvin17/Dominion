@@ -5,7 +5,7 @@ import ru.korvin.dominion.mechanic.baseObject.castle.room.LocationType;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.generator.Generator;
-import ru.korvin.dominion.mechanic.baseObject.state.progress.Progress;
+import ru.korvin.dominion.mechanic.server.progress.Progress;
 
 public class Rest extends Room {
     private static final int NAME_ID = R.string.room_rest_name;

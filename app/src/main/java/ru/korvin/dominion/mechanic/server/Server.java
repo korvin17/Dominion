@@ -2,7 +2,6 @@ package ru.korvin.dominion.mechanic.server;
 
 
 import java.util.Collection;
-import java.util.logging.Logger;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.market.Market;
@@ -12,13 +11,14 @@ import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.Player;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
-import ru.korvin.dominion.mechanic.baseObject.state.State;
-import ru.korvin.dominion.mechanic.baseObject.state.progress.IllegalProgressStateException;
-import ru.korvin.dominion.mechanic.baseObject.state.progress.PersonProgress;
+import ru.korvin.dominion.mechanic.server.event.TotalEvent;
+import ru.korvin.dominion.mechanic.server.state.State;
+import ru.korvin.dominion.mechanic.server.event.Event;
+import ru.korvin.dominion.mechanic.server.progress.PersonProgress;
 
 public class Server {
     protected State state;
-
+    protected ServerProgress serverProgress;
 
     public State getState() {
         return state;
@@ -35,27 +35,26 @@ public class Server {
         this.state = new State(player, GameConst.INITIAL_YEAR, GameConst.INITIAL_MONTH, GameConst.INITIAL_DAY);
     }
 
-
-    public ServerProgress doStep(ServerProgress progress) throws IllegalProgressStateException {
-        if (progress == null) {
-            progress = new ServerProgress();
-            initiateNewDay(progress);
-        }
-        if ((progress = doPersonAtBeginDay(progress)).isNeedShowActiity())
-            return progress;
-        if ((progress = doRoomAtBeginDay(progress)).isNeedShowActiity())
+    //TODO убрать присвоение прогресса
+    public Event doStep() {
+        serverProgress.setEvent(null);
+        doPersonAtBeginDay();
+        if (serverProgress.isNeedShowActiity())
+            return serverProgress.getEvent();
+        /*if ((progress = doRoomAtBeginDay(progress)).isNeedShowActiity())
             return progress;
         if ((progress = doRoomNextDay(progress)).isNeedShowActiity())
             return progress;
         if ((progress = doRoomAtEndDay(progress)).isNeedShowActiity())
             return progress;
         if ((progress = doPersonAtEndDay(progress)).isNeedShowActiity())
-            return progress;
-        progress.finish();
-        return progress;
+            return progress;*/
+        //serverProgress.finish();
+
+        return serverProgress.getEvent();
     }
 
-    public ServerProgress doPersonAtBeginDay(ServerProgress serverProgress) {
+    private ServerProgress doPersonAtBeginDay() {
         if (serverProgress.finishBeginPerson) return serverProgress;
         for (Person person : serverProgress.personProgresses.keySet()) {
             PersonProgress personProgress = serverProgress.personProgresses.get(person);
@@ -69,36 +68,31 @@ public class Server {
         return serverProgress;
     }
 
-    public ServerProgress doPersonAtEndDay(ServerProgress progress) {
+    private ServerProgress doPersonAtEndDay(ServerProgress progress) {
         return progress;
     }
 
-    public ServerProgress doRoomAtBeginDay(ServerProgress progress) {
+    private ServerProgress doRoomAtBeginDay(ServerProgress progress) {
         return progress;
     }
 
-    public ServerProgress doRoomNextDay(ServerProgress progress) {
+    private ServerProgress doRoomNextDay(ServerProgress progress) {
         return progress;
     }
 
-    public ServerProgress doRoomAtEndDay(ServerProgress progress) {
+    private ServerProgress doRoomAtEndDay(ServerProgress progress) {
         return progress;
     }
 
-
-    public ServerProgress doStepSafe(ServerProgress progress) {
-        try {
-            return this.doStep(progress);
-        } catch (IllegalProgressStateException exception) {
-            //  PrintWriter writer;
-            //  exception.printStackTrace(writer);
-            //  logger.log();
-        }
-        progress.end();
-        return progress;
+    private void doEnd() {
+        if (serverProgress.finishEnd)
+            return;
+        serverProgress.setEvent(getPlayer().getTotal());
+        serverProgress.finishEnd = true;
     }
 
-    private void initiateNewDay(ServerProgress progress) {
+    public ServerProgress initiateNewDay() {
+        serverProgress = new ServerProgress();
         for (Person person : state.getAllPerson()) {
             person.initiateNewDay();
         }
@@ -108,11 +102,13 @@ public class Server {
         for (Room room : state.getWorkRooms()) {
             room.initateNewDay();
         }
+        return serverProgress;
     }
 
+    public boolean isFinishedNewDay() {
+        return serverProgress.isFinished();
+    }
 
-    private static final String LOGGER_NAME = "game server";
-    Logger logger = Logger.getLogger(LOGGER_NAME);
 
 
     public Collection<Person> getVisibleGirls() {
@@ -156,5 +152,9 @@ public class Server {
         else {
             return false;
         }
+    }
+
+    public Player getPlayer() {
+        return state.getPlayer();
     }
 }

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
-import ru.korvin.dominion.mechanic.baseObject.state.progress.IllegalProgressStateException;
-import ru.korvin.dominion.mechanic.baseObject.state.progress.Progress;
+import ru.korvin.dominion.mechanic.server.progress.IllegalProgressStateException;
+import ru.korvin.dominion.mechanic.server.progress.Progress;
 
 public abstract class Room implements Serializable {
     protected List<Person> persons;
@@ -70,11 +70,13 @@ public abstract class Room implements Serializable {
     }
 
     public int id;
+
     protected Room(int id, LocationType type) {
         this.id = id;
         this.type = type;
         this.persons = new ArrayList<>();
     }
+
     public abstract int getNameId();
 
     public abstract int getImageId();

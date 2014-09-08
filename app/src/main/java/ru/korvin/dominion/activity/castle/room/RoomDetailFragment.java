@@ -23,8 +23,8 @@ import ru.korvin.dominion.mechanic.baseObject.creature.Person;
  */
 public class RoomDetailFragment extends Fragment implements AdapterView.OnItemClickListener {
     public static final String ARG_ROOM_ID = "room_id";
-    private Room room;
-    private Room rest;
+    private Room workRoom;
+    private Room restRoom;
     private AbsListView mRestListView;
     private AbsListView mWorkListView;
 
@@ -36,10 +36,10 @@ public class RoomDetailFragment extends Fragment implements AdapterView.OnItemCl
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments().containsKey(ARG_ROOM_ID)) {
-            rest = GameApplication.getDefaultGameApplication().getServer().getRest();
-            room = GameApplication.getDefaultGameApplication().getServer().getRoomWithID(getArguments().getInt(ARG_ROOM_ID));
-            mRestAdapter = new ArrayAdapter<Person>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, rest.getPersons());
-            mWorkAdapter = new ArrayAdapter<Person>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, room.getPersons());
+            restRoom = GameApplication.getDefaultGameApplication().getServer().getRest();
+            workRoom = GameApplication.getDefaultGameApplication().getServer().getRoomWithID(getArguments().getInt(ARG_ROOM_ID));
+            mRestAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, restRoom.getPersons());
+            mWorkAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, workRoom.getPersons());
         }
     }
 
@@ -65,14 +65,14 @@ public class RoomDetailFragment extends Fragment implements AdapterView.OnItemCl
             Person person = mRestAdapter.getItem(position);
             mRestAdapter.remove(person);
             mWorkAdapter.add(person);
-            rest.deletePerson(person);
-            room.addPerson(person);
+            restRoom.deletePerson(person);
+            workRoom.addPerson(person);
         } else {
             Person person = mWorkAdapter.getItem(position);
             mWorkAdapter.remove(person);
             mRestAdapter.add(person);
-            rest.addPerson(person);
-            room.deletePerson(person);
+            restRoom.addPerson(person);
+            workRoom.deletePerson(person);
         }
     }
 }

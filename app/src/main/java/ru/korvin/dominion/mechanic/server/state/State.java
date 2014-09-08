@@ -1,4 +1,4 @@
-package ru.korvin.dominion.mechanic.baseObject.state;
+package ru.korvin.dominion.mechanic.server.state;
 
 
 import java.io.Serializable;

@@ -7,7 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Date;
 
-import ru.korvin.dominion.mechanic.baseObject.state.State;
+import ru.korvin.dominion.mechanic.server.state.State;
 
 public class SaveRecord {
     private String name;

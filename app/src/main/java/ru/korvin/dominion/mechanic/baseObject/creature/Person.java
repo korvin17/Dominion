@@ -1,8 +1,6 @@
 package ru.korvin.dominion.mechanic.baseObject.creature;
 
 
-import android.widget.Switch;
-
 import java.util.Random;
 
 import ru.korvin.dominion.R;
@@ -10,8 +8,8 @@ import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
 import ru.korvin.dominion.mechanic.baseObject.skill.SkillList;
-import ru.korvin.dominion.mechanic.baseObject.state.progress.PersonProgress;
-import ru.korvin.dominion.mechanic.baseObject.state.progress.Progress;
+import ru.korvin.dominion.mechanic.server.progress.PersonProgress;
+import ru.korvin.dominion.mechanic.server.progress.Progress;
 
 public class Person extends Creature {
     public int cost=100;

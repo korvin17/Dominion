@@ -9,6 +9,7 @@ import ru.korvin.dominion.dao.storage.Storage;
 import ru.korvin.dominion.dao.storage.shell.SaveRecord;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
+import ru.korvin.dominion.mechanic.server.event.Event;
 import ru.korvin.dominion.mechanic.server.Server;
 
 public class GameApplication extends Application {
@@ -65,6 +66,24 @@ public class GameApplication extends Application {
         this.setFirstLaunch(false, id);
     }
 
+    private Event event;
+
+    public void initiateNewDay() {
+        server.initiateNewDay();
+        event = null;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public Event nextEvent() {
+        event = server.doStep();
+        return event;
+    }
+
+
+
     private Server server;
     private Storage storage;
     private DB dataBase;
@@ -86,4 +105,6 @@ public class GameApplication extends Application {
     public static GameApplication getDefaultGameApplication() {
         return defaultGameApplication;
     }
+
+
 }

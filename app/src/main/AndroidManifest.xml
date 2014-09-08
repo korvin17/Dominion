@@ -63,10 +63,8 @@
                 android:value="ru.korvin.dominion.activity.castle.room.RoomListActivity" />
         </activity>
         <activity
-            android:name=".activity.main.NextDayActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_next_day"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:name=".activity.newday.StatsActivity"
+            android:label="@string/title_activity_stats"></activity>
     </application>
 
 </manifest>

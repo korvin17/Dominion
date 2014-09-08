@@ -42,5 +42,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="buy">buy</string>
     <string name="new_save">new save</string>
+    <string name="title_activity_stats">StatsActivity</string>
 
 </resources>

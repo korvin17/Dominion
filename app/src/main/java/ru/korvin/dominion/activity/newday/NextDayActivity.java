@@ -1,7 +1,8 @@
-package ru.korvin.dominion.activity.main;
+package ru.korvin.dominion.activity.newday;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,7 +10,10 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import ru.korvin.dominion.R;
+import ru.korvin.dominion.activity.main.MainTabActivity;
 import ru.korvin.dominion.activity.main.util.SystemUiHider;
+import ru.korvin.dominion.dao.GameApplication;
+import ru.korvin.dominion.mechanic.server.event.Event;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -17,7 +21,29 @@ import ru.korvin.dominion.activity.main.util.SystemUiHider;
  *
  * @see SystemUiHider
  */
-public class NextDayActivity extends Activity {
+public abstract class NextDayActivity<E extends Event> extends Activity {
+    protected E mEvent;
+
+    protected void showNextEvent() {
+        Event event = GameApplication.getDefaultGameApplication().nextEvent();
+        if (event == null)
+            returnToMainActivity();
+        else {
+            showEvent(event);
+        }
+
+    }
+
+    private void returnToMainActivity() {
+        Intent intent = new Intent(this, MainTabActivity.class);
+        startActivity(intent);
+    }
+
+    protected void showEvent(Event event) {
+        Intent intent = event.getIntent(this);
+        startActivity(intent);
+    }
+
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -113,6 +139,7 @@ public class NextDayActivity extends Activity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        mEvent = (E) GameApplication.getDefaultGameApplication().getEvent();
     }
 
     @Override

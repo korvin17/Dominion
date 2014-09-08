@@ -3,6 +3,8 @@ package ru.korvin.dominion.mechanic.baseObject.creature;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
 import ru.korvin.dominion.mechanic.baseObject.skill.SkillList;
+import ru.korvin.dominion.mechanic.server.event.Event;
+import ru.korvin.dominion.mechanic.server.event.TotalEvent;
 
 public class Player extends Creature {
     protected String name;
@@ -23,5 +25,15 @@ public class Player extends Creature {
         else {
             return false;
         }
+    }
+
+    private EventsHistoryList historyList;
+
+    public void initNextDay() {
+        historyList = new EventsHistoryList();
+    }
+
+    public TotalEvent getTotal() {
+        return historyList.getTotal();
     }
 }

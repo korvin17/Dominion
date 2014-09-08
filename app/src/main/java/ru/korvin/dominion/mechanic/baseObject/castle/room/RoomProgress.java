@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
-import ru.korvin.dominion.mechanic.baseObject.state.progress.Progress;
+import ru.korvin.dominion.mechanic.server.progress.Progress;
 
 public class RoomProgress extends Progress {
     Map<Person, Progress> map;
