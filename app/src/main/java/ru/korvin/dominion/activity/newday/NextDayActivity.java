@@ -71,7 +71,7 @@ public abstract class NextDayActivity<E extends Event> extends Activity {
      * The instance of the {@link SystemUiHider} for this activity.
      */
     private SystemUiHider mSystemUiHider;
-
+/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,7 +151,7 @@ public abstract class NextDayActivity<E extends Event> extends Activity {
         // are available.
         delayedHide(100);
     }
-
+*/
 
     /**
      * Touch listener to use for in-layout UI controls to delay hiding the

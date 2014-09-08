@@ -33,11 +33,13 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/work_room_girl_rest_list_view" />
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/work_room_girl_work_list_view" />
 
     </LinearLayout>

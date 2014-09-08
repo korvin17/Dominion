@@ -1,7 +1,7 @@
 package ru.korvin.dominion.mechanic.baseObject.state.progress;
 
 
-import ru.korvin.dominion.mechanic.baseObject.state.events.Event;
+import ru.korvin.dominion.mechanic.server.event.Event;
 
 public class Progress {
 

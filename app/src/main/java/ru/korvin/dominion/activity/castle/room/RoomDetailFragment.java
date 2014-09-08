@@ -65,14 +65,10 @@ public class RoomDetailFragment extends Fragment implements AdapterView.OnItemCl
             Person person = mRestAdapter.getItem(position);
             mRestAdapter.remove(person);
             mWorkAdapter.add(person);
-            restRoom.deletePerson(person);
-            workRoom.addPerson(person);
         } else {
             Person person = mWorkAdapter.getItem(position);
             mWorkAdapter.remove(person);
             mRestAdapter.add(person);
-            restRoom.addPerson(person);
-            workRoom.deletePerson(person);
         }
     }
 }

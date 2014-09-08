@@ -83,7 +83,7 @@ public class WorkRoomMainFragment extends Fragment
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            //arguments.putString(RoomDetailFragment.ARG_ITEM_ID, id);
+            arguments.putInt(RoomDetailFragment.ARG_ROOM_ID, room.id);
             RoomDetailFragment fragment = new RoomDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
