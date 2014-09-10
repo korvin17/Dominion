@@ -44,20 +44,20 @@ public class Server {
     public Event doStep() {
         serverProgress.setEvent(null);
         doPersonAtBeginDay();
-        if (serverProgress.isNeedShowActiity())
+        if (serverProgress.isNeedShowActivity())
             return serverProgress.getEvent();
 
         doRoomNextDay();
-        if (serverProgress.isNeedShowActiity())
+        if (serverProgress.isNeedShowActivity())
             return serverProgress.getEvent();
 
-        /*if ((progress = doRoomAtBeginDay(progress)).isNeedShowActiity())
+        /*if ((progress = doRoomAtBeginDay(progress)).isNeedShowActivity())
             return progress;
-        if ((progress = doRoomNextDay(progress)).isNeedShowActiity())
+        if ((progress = doRoomNextDay(progress)).isNeedShowActivity())
             return progress;
-        if ((progress = doRoomAtEndDay(progress)).isNeedShowActiity())
+        if ((progress = doRoomAtEndDay(progress)).isNeedShowActivity())
             return progress;
-        if ((progress = doPersonAtEndDay(progress)).isNeedShowActiity())
+        if ((progress = doPersonAtEndDay(progress)).isNeedShowActivity())
             return progress;*/
         //serverProgress.finish();
         doEnd();
@@ -70,7 +70,7 @@ public class Server {
             PersonProgress personProgress = serverProgress.personProgresses.get(person);
             personProgress = person.nextDayBegin(personProgress);
             serverProgress.personProgresses.put(person, personProgress);
-            if (personProgress.isNeedShowActiity())
+            if (personProgress.isNeedShowActivity())
                 serverProgress.setEvent(personProgress.getEvent());
             return;
         }
@@ -92,7 +92,7 @@ public class Server {
             RoomProgress roomProgress = serverProgress.roomProgresses.get(room);
             roomProgress = room.doStep(roomProgress);
             serverProgress.roomProgresses.put(room, roomProgress);
-            if (roomProgress.isNeedShowActiity())
+            if (roomProgress.isNeedShowActivity())
                 serverProgress.setEvent(roomProgress.getEvent());
             return;
         }
@@ -122,6 +122,7 @@ public class Server {
         for (Room room : state.getWorkRooms()) {
             room.initateNewDay();
         }
+        getPlayer().initNextDay();
         return serverProgress;
     }
 
@@ -167,8 +168,7 @@ public class Server {
 
     public boolean buyPerson(Person person) {
         if (state.getPlayer().spendMoney(new EventDiff(EventType.BUY, person.cost))) {
-            getMarket().deletePerson(person);
-            getRest().addPerson(person);
+            state.buyPerson(person);
             return true;
         } else {
             return false;

@@ -1,7 +1,10 @@
 package ru.korvin.dominion.mechanic.server.state;
 
 
+import android.widget.ArrayAdapter;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -21,7 +24,7 @@ public class State implements Serializable {
     private Castle castle;
     private Calendar date;
     private Generator generator;
-    private Rest rest;
+    private List<Person> persons;
 
     public State(Player player, int year, int month, int day) {
         this.player = player;
@@ -29,6 +32,7 @@ public class State implements Serializable {
         this.castle = new Castle(generator);
         this.date = GregorianCalendar.getInstance();
         this.date.set(year, month, day);
+        this.persons=new ArrayList<>();
     }
 
     public Room[] getVisibleRooms() {
@@ -70,8 +74,14 @@ public class State implements Serializable {
     public Collection<Quest> getQuests() {
         return null;
     }*/
+
+    public void buyPerson(Person person) {
+        getMarket().deletePerson(person);
+        getRest().addPerson(person);
+        persons.add(person);
+    }
     public List<Person> getAllPerson() {
-        return null;
+        return persons;
     }
 
     public Player getPlayer() {

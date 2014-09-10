@@ -31,8 +31,8 @@ public class Progress {
         return state == ProgressState.ready;
     }
 
-    public boolean isNeedShowActiity() {
-        return this.event == null;
+    public boolean isNeedShowActivity() {
+        return this.event != null;
     }
 
     public Event getEvent() {

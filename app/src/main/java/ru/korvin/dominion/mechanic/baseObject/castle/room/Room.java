@@ -18,20 +18,21 @@ public abstract class Room implements Serializable {
     }
 
     protected RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress) {
-        RoomProgress resultProgress = new RoomProgress(persons.size());
+        if(currentRoomProgress==null)
+            currentRoomProgress = new RoomProgress(persons.size());
         //resultProgress.startExecute();
         boolean finished = true;
         for (Person person : persons) {
             Progress currentPersonProgress = currentRoomProgress.isReady() ? new RoomProgress(persons.size()) : (RoomProgress) currentRoomProgress.get(person);
             Progress newPersonProgress = doStepForOnePerson(person, currentPersonProgress);
-            resultProgress.put(person, newPersonProgress);
+            currentRoomProgress.put(person, newPersonProgress);
             if (!newPersonProgress.isFinished()) {
                 finished = false;
             }
         }
         if (finished)
-            resultProgress.finish();
-        return resultProgress;
+            currentRoomProgress.finish();
+        return currentRoomProgress;
     }
 
     protected Progress doStepForOnePerson(Person person, Progress progress) {

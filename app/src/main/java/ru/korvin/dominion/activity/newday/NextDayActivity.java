@@ -2,10 +2,15 @@ package ru.korvin.dominion.activity.newday;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
+import android.support.v4.view.GestureDetectorCompat;
+import android.util.AttributeSet;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -21,8 +26,10 @@ import ru.korvin.dominion.mechanic.server.event.Event;
  *
  * @see SystemUiHider
  */
-public abstract class NextDayActivity<E extends Event> extends Activity {
+public abstract class NextDayActivity<E extends Event> extends Activity implements
+        GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
     protected E mEvent;
+    protected GestureDetectorCompat mDetector;
 
     protected void showNextEvent() {
         Event event = GameApplication.getDefaultGameApplication().nextEvent();
@@ -44,6 +51,58 @@ public abstract class NextDayActivity<E extends Event> extends Activity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mEvent= (E) GameApplication.getDefaultGameApplication().getEvent();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mDetector = new GestureDetectorCompat(this,this);
+        mDetector.setOnDoubleTapListener(this);
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        float distanse=Math.abs(e1.getX()-e2.getX());
+        if(velocityX>300&&distanse>100) {
+            showNextEvent();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public boolean onTouchEvent(MotionEvent event){
+        this.mDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+    }
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -183,5 +242,20 @@ public abstract class NextDayActivity<E extends Event> extends Activity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent e) {
+        return false;
     }
 }

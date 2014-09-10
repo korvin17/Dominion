@@ -3,9 +3,12 @@ package ru.korvin.dominion.activity.newday;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.widget.TextView;
 
 import ru.korvin.dominion.R;
+import ru.korvin.dominion.dao.GameApplication;
+import ru.korvin.dominion.mechanic.server.Server;
 import ru.korvin.dominion.mechanic.server.event.type.TotalEvent;
 
 public class StatsActivity extends NextDayActivity<TotalEvent> {
@@ -19,7 +22,7 @@ public class StatsActivity extends NextDayActivity<TotalEvent> {
         mMoneyTextView = (TextView) findViewById(R.id.money);
         mMoneyProfitTextView = (TextView) findViewById(R.id.money_profit);
 
-        mMoneyTextView.setText(Long.toString(mEvent.getServer().getPlayer().getMoney()));
+        mMoneyTextView.setText(Long.toString(Server.getDefault().getPlayer().getMoney()));
         mMoneyProfitTextView.setText(Long.toString(mEvent.moneyDiff));
     }
 
@@ -42,4 +45,5 @@ public class StatsActivity extends NextDayActivity<TotalEvent> {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

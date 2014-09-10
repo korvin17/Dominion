@@ -21,7 +21,7 @@ public abstract class simpleDungeon extends Dangeon {
     }
 
     @Override
-    public RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress) throws IllegalProgressStateException {
+    public RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress){
         initiate();
         while (adventure.isAlive() && mob.isAlive()) {
             int adDamage = adventure.getDamage();
