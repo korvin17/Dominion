@@ -1,9 +1,9 @@
-package ru.korvin.dominion.mechanic.baseObject.skill.util;
+package ru.korvin.dominion.mechanic.baseObject.creature.skill.util;
 
 import java.util.Iterator;
 
-import ru.korvin.dominion.mechanic.baseObject.skill.Skill;
-import ru.korvin.dominion.mechanic.baseObject.skill.SkillList;
+import ru.korvin.dominion.mechanic.baseObject.creature.skill.Skill;
+import ru.korvin.dominion.mechanic.baseObject.creature.skill.SkillList;
 
 public class SkillListIterator implements Iterator<Skill> {
     private SkillList skillList;

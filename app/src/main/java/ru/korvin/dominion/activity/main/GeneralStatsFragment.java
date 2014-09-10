@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.activity.newday.NextDayActivity;
+import ru.korvin.dominion.dao.GameApplication;
+import ru.korvin.dominion.mechanic.server.event.Event;
 
 public class GeneralStatsFragment extends Fragment implements View.OnClickListener {
     Button mNextDayButton;
@@ -24,8 +26,9 @@ public class GeneralStatsFragment extends Fragment implements View.OnClickListen
     }
 
     private void nextDay() {
-        Intent intent = new Intent(getActivity(), NextDayActivity.class);
-        startActivity(intent);
+        GameApplication.getDefaultGameApplication().initiateNewDay();
+        Event event = GameApplication.getDefaultGameApplication().nextEvent();
+        startActivity(event.getIntent(getActivity()));
     }
 
     @Override
@@ -33,6 +36,10 @@ public class GeneralStatsFragment extends Fragment implements View.OnClickListen
         if (v == mNextDayButton) {
             this.nextDay();
         }
+    }
+
+    public static GeneralStatsFragment newInstance() {
+        return new GeneralStatsFragment();
     }
 
     public GeneralStatsFragment() {

@@ -31,4 +31,13 @@
     <string name="name">имя</string>
     <string name="buy">купить</string>
     <string name="new_save">новое сохранение</string>
+
+
+    <string name="main_tab_save_title">Сохранить</string>
+    <string name="main_tab_save_edit_name_title">Введите название</string>
+    <string name="main_tab_load_title">Загрузить</string>
+
+    <string name="tab_castle_name">замок</string>
+    <string name="tab_stats_name">Обзор</string>
+    <string name="tab_world_name">Мир</string>
 </resources>

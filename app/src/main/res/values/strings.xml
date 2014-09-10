@@ -44,4 +44,11 @@
     <string name="new_save">new save</string>
     <string name="title_activity_stats">StatsActivity</string>
 
+    <string name="main_tab_save_title">Save</string>
+    <string name="main_tab_save_edit_name_title">Edit name</string>
+    <string name="main_tab_load_title">Load</string>
+
+    <string name="tab_castle_name">castle</string>
+    <string name="tab_stats_name">stats</string>
+    <string name="tab_world_name">world</string>
 </resources>

@@ -4,7 +4,12 @@ import ru.korvin.dominion.R;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.LocationType;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
+import ru.korvin.dominion.mechanic.baseObject.creature.skill.SkillDiff;
+import ru.korvin.dominion.mechanic.baseObject.creature.skill.SkillGenerator;
+import ru.korvin.dominion.mechanic.baseObject.creature.stats.StatsDiff;
 import ru.korvin.dominion.mechanic.baseObject.generator.Generator;
+import ru.korvin.dominion.mechanic.server.event.EventDiff;
+import ru.korvin.dominion.mechanic.server.event.EventType;
 import ru.korvin.dominion.mechanic.server.progress.Progress;
 
 public class Maid extends Room {
@@ -14,7 +19,13 @@ public class Maid extends Room {
 
     @Override
     public Progress doStepForOnePerson(Person person, Progress progress) {
-        return person.Rest();
+        if (progress.isFinished()) return progress;
+        SkillDiff skillDiff = new SkillDiff();
+        skillDiff.addExp(SkillGenerator.SKILL_MAID_ID, 10);
+        EventDiff diff = new EventDiff(EventType.WORK, 0, skillDiff);
+        person.logWork(diff);
+        progress.finish();
+        return progress;
     }
 
     public Maid(Generator generator) {

@@ -1,5 +1,6 @@
 package ru.korvin.dominion.mechanic.server;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,15 +17,22 @@ public class ServerProgress extends Progress {
     private long moneyProfit;
 
 
-    public ServerProgress() {
-        this.roomProgresses = new HashMap<>();
-        this.personProgresses = new HashMap<>();
+    public ServerProgress(Room[] rooms, Collection<Person> persons) {
         this.finishBeginPerson = false;
         this.finishBeginRoom = false;
         this.finishMidleRoom = false;
         this.finishEndRoom = false;
         this.finishEndPerson = false;
         this.finishEnd = false;
+
+        this.roomProgresses = new HashMap<>();
+        this.personProgresses = new HashMap<>();
+
+        for (Room room : rooms)
+            roomProgresses.put(room, null);
+        for (Person person : persons)
+            personProgresses.put(person, null);
+
     }
 
     public boolean finishBeginPerson;

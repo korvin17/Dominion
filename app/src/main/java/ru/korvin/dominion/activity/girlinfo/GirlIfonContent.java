@@ -9,7 +9,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
-import ru.korvin.dominion.mechanic.baseObject.skill.Skill;
+import ru.korvin.dominion.mechanic.baseObject.creature.skill.Skill;
 
 public class GirlIfonContent extends BaseAdapter {
 

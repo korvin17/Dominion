@@ -26,7 +26,6 @@ import java.util.Locale;
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.activity.castle.CastleFragment;
 import ru.korvin.dominion.activity.castle.market.MarketSlaveListActivity;
-import ru.korvin.dominion.activity.castle.room.WorkRoomListFragment;
 import ru.korvin.dominion.activity.castle.room.WorkRoomMainFragment;
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.dao.storage.DB;
@@ -99,28 +98,28 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
         return true;
     }
 
-    public boolean save(){
+    public boolean save() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.main_tab_save_title);
 
-        Cursor cursor=mDataBase.getAllState();
-        ArrayList<String> items=new ArrayList<>(cursor.getCount()+1);
-        final ArrayList<Long> ids=new ArrayList<>(cursor.getCount()+1);
+        Cursor cursor = mDataBase.getAllState();
+        ArrayList<String> items = new ArrayList<>(cursor.getCount() + 1);
+        final ArrayList<Long> ids = new ArrayList<>(cursor.getCount() + 1);
 
         items.add(getString(R.string.new_save));
-        if (cursor.moveToFirst()){
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 items.add(cursor.getString(cursor.getColumnIndex(DB.COLUMN_NAME_NAME)));
                 ids.add(cursor.getLong(cursor.getColumnIndex(DB.COLUMN_NAME_ID)));
-            }while(cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         cursor.close();
-        final Activity activity=this;
-        final String[] names=items.toArray(new String[0]);
-        builder.setItems(names,new DialogInterface.OnClickListener() {
+        final Activity activity = this;
+        final String[] names = items.toArray(new String[0]);
+        builder.setItems(names, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(which==0){
+                if (which == 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                     builder.setTitle(R.string.main_tab_save_edit_name_title);
                     final EditText input = new EditText(activity);
@@ -129,23 +128,22 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
                             LinearLayout.LayoutParams.MATCH_PARENT);
                     input.setLayoutParams(lp);
                     builder.setView(input);
-                    builder.setPositiveButton(android.R.string.yes,new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                             GameApplication.getDefaultGameApplication().saveState(input.getText().toString());
+                            GameApplication.getDefaultGameApplication().saveState(input.getText().toString());
                         }
                     });
-                    builder.setNegativeButton(android.R.string.cancel,new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
                         }
                     });
                     builder.show();
-                }
-                else {
+                } else {
                     String name = names[which];
-                    long id= ids.get(which-1);
+                    long id = ids.get(which - 1);
                     GameApplication.getDefaultGameApplication().saveState(name, id);
                 }
             }
@@ -153,15 +151,15 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
 
         builder.setCancelable(true);
         builder.show();
-        return  true;
-      }
+        return true;
+    }
 
 
-    public boolean load(){
+    public boolean load() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.main_tab_load_title);
-        final Cursor cursor=mDataBase.getAllState();
-        builder.setCursor(cursor,new DialogInterface.OnClickListener() {
+        final Cursor cursor = mDataBase.getAllState();
+        builder.setCursor(cursor, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 cursor.moveToPosition(which);
@@ -194,9 +192,8 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
         });
         builder.setCancelable(true);
         builder.show();
-        return  true;
+        return true;
     }
-
 
 
     @Override
@@ -253,6 +250,7 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
     }
 
     private Fragment active_fragment = null;
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -268,18 +266,19 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
+                case 0:
+                    return GeneralStatsFragment.newInstance();
                 case 1:
                     return WorkRoomMainFragment.newInstance();
                 case 2:
                     return CastleFragment.newInstance();
                 default:
-                    return PlaceholderFragment.newInstance(position + 1);
+                    return null;
             }
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 3;
         }
 
@@ -288,47 +287,13 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
             Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
+                    return getString(R.string.tab_stats_name).toUpperCase(l);
                 case 1:
-                    return getString(R.string.room_castle_name).toUpperCase(l);
+                    return getString(R.string.tab_castle_name).toUpperCase(l);
                 case 2:
                     return getString(R.string.tab_world_name).toUpperCase(l);
             }
             return null;
         }
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.main_tab_fragment, container, false);
-            return rootView;
-        }
-    }
-
 }

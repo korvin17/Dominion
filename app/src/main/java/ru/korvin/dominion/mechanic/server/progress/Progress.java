@@ -15,10 +15,7 @@ public class Progress {
         this.state = ProgressState.execute;
     }
 
-    public void finish() throws IllegalProgressStateException {
-        if (this.state != ProgressState.execute) {
-            throw new IllegalProgressStateException();
-        }
+    public void finish() {
         this.state = ProgressState.finished;
     }
 

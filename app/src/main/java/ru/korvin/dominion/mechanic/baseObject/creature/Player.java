@@ -2,9 +2,10 @@ package ru.korvin.dominion.mechanic.baseObject.creature;
 
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
-import ru.korvin.dominion.mechanic.baseObject.skill.SkillList;
-import ru.korvin.dominion.mechanic.server.event.Event;
-import ru.korvin.dominion.mechanic.server.event.TotalEvent;
+import ru.korvin.dominion.mechanic.baseObject.creature.skill.SkillList;
+import ru.korvin.dominion.mechanic.baseObject.creature.stats.Stats;
+import ru.korvin.dominion.mechanic.server.event.EventDiff;
+import ru.korvin.dominion.mechanic.server.event.EventsHistoryList;
 
 public class Player extends Creature {
     protected String name;
@@ -17,23 +18,11 @@ public class Player extends Creature {
         this.money = money;
     }
 
-    public boolean spendMoney(Long cost){
-        if(this.money>cost) {
-            money -= cost;
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    private EventsHistoryList historyList;
-
     public void initNextDay() {
         historyList = new EventsHistoryList();
     }
 
-    public TotalEvent getTotal() {
+    public EventDiff getTotal() {
         return historyList.getTotal();
     }
 }

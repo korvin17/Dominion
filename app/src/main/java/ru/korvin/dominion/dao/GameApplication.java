@@ -19,7 +19,7 @@ public class GameApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        this.server = new Server();
+        this.server = Server.getDefault();
         this.storage = new Storage();
         this.dataBase = new DB(getApplicationContext());
         this.preferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
@@ -29,14 +29,17 @@ public class GameApplication extends Application {
             loadSave(idAutoSave);
         }
     }
-    public void loadSave(long idSave){
+
+    public void loadSave(long idSave) {
         SaveRecord record = this.dataBase.getState(idSave);
         this.server.setState(record.getState());
     }
-    public long saveState(String name,long idSave){
-        return dataBase.saveState(server.getState(),name,idSave);
+
+    public long saveState(String name, long idSave) {
+        return dataBase.saveState(server.getState(), name, idSave);
     }
-    public long saveState(String name){
+
+    public long saveState(String name) {
 
         return dataBase.saveState(server.getState(), name);
     }
@@ -81,7 +84,6 @@ public class GameApplication extends Application {
         event = server.doStep();
         return event;
     }
-
 
 
     private Server server;

@@ -1,4 +1,4 @@
-package ru.korvin.dominion.mechanic.baseObject.creature;
+package ru.korvin.dominion.mechanic.baseObject.creature.stats;
 
 import java.io.Serializable;
 
@@ -49,5 +49,15 @@ public class Stats implements Serializable {
         this.hp = this.maxHp;
         this.mp = this.maxMp;
         this.energy = this.maxEnergy;
+    }
+
+    public boolean apply(StatsDiff diff) {
+        this.hp += diff.hp;
+        if (hp < 0) hp = 0;
+        if (hp > maxHp) hp = maxHp;
+        this.energy += diff.energy;
+        if (energy < 0) energy = 0;
+        if (energy > maxEnergy) energy = maxEnergy;
+        return true;
     }
 }

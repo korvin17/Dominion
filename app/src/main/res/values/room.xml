@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_tab_save_title">Save</string>
-    <string name="main_tab_save_edit_name_title">Edit name</string>
-    
-    <string name="main_tab_load_title">Load</string>
 
 
-    <string name="room_castle_name">castle</string>
     <string name="room_market_name">market</string>
     <string name="room_market_buy_title">buy</string>
     <string name="room_market_buy_message">Want to buy %1$s for %2$d?</string>
     <string name="room_rest_name">rest</string>
     <string name="room_maid_name">maid</string>
-    <string name="tab_world_name">world</string>
 </resources>

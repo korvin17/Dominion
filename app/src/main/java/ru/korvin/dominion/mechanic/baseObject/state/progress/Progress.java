@@ -2,6 +2,8 @@ package ru.korvin.dominion.mechanic.baseObject.state.progress;
 
 
 import ru.korvin.dominion.mechanic.server.event.Event;
+import ru.korvin.dominion.mechanic.server.progress.IllegalProgressStateException;
+import ru.korvin.dominion.mechanic.server.progress.ProgressState;
 
 public class Progress {
 

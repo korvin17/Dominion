@@ -18,7 +18,10 @@ public class Rest extends Room {
 
     @Override
     public Progress doStepForOnePerson(Person person, Progress progress) {
-        return person.Rest();
+        if (progress.isFinished()) return progress;
+        person.rest();
+        progress.finish();
+        return progress;
     }
 
     @Override

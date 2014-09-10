@@ -13,13 +13,13 @@ public abstract class Room implements Serializable {
     protected List<Person> persons;
     protected LocationType type;
 
-    public RoomProgress doStep(RoomProgress progress) throws IllegalProgressStateException {
+    public RoomProgress doStep(RoomProgress progress) {
         return doStepForEveryOnePerson((RoomProgress) progress);
     }
 
-    protected RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress) throws IllegalProgressStateException {
+    protected RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress) {
         RoomProgress resultProgress = new RoomProgress(persons.size());
-        resultProgress.startExecute();
+        //resultProgress.startExecute();
         boolean finished = true;
         for (Person person : persons) {
             Progress currentPersonProgress = currentRoomProgress.isReady() ? new RoomProgress(persons.size()) : (RoomProgress) currentRoomProgress.get(person);
@@ -80,5 +80,6 @@ public abstract class Room implements Serializable {
     public abstract int getNameId();
 
     public abstract int getImageId();
+
 
 }

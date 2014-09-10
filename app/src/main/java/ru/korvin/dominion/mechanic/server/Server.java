@@ -4,6 +4,7 @@ package ru.korvin.dominion.mechanic.server;
 import java.util.Collection;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.market.Market;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Maid;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Rest;
@@ -11,14 +12,18 @@ import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.Player;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
-import ru.korvin.dominion.mechanic.server.event.TotalEvent;
+import ru.korvin.dominion.mechanic.server.event.EventDiff;
+import ru.korvin.dominion.mechanic.server.event.EventType;
+import ru.korvin.dominion.mechanic.server.event.type.TotalEvent;
 import ru.korvin.dominion.mechanic.server.state.State;
 import ru.korvin.dominion.mechanic.server.event.Event;
 import ru.korvin.dominion.mechanic.server.progress.PersonProgress;
 
+//TODO везде перекинуть на дефалт
 public class Server {
     protected State state;
     protected ServerProgress serverProgress;
+
 
     public State getState() {
         return state;
@@ -41,6 +46,11 @@ public class Server {
         doPersonAtBeginDay();
         if (serverProgress.isNeedShowActiity())
             return serverProgress.getEvent();
+
+        doRoomNextDay();
+        if (serverProgress.isNeedShowActiity())
+            return serverProgress.getEvent();
+
         /*if ((progress = doRoomAtBeginDay(progress)).isNeedShowActiity())
             return progress;
         if ((progress = doRoomNextDay(progress)).isNeedShowActiity())
@@ -50,22 +60,22 @@ public class Server {
         if ((progress = doPersonAtEndDay(progress)).isNeedShowActiity())
             return progress;*/
         //serverProgress.finish();
-
+        doEnd();
         return serverProgress.getEvent();
     }
 
-    private ServerProgress doPersonAtBeginDay() {
-        if (serverProgress.finishBeginPerson) return serverProgress;
+    private void doPersonAtBeginDay() {
+        if (serverProgress.finishBeginPerson) return;
         for (Person person : serverProgress.personProgresses.keySet()) {
             PersonProgress personProgress = serverProgress.personProgresses.get(person);
             personProgress = person.nextDayBegin(personProgress);
             serverProgress.personProgresses.put(person, personProgress);
             if (personProgress.isNeedShowActiity())
                 serverProgress.setEvent(personProgress.getEvent());
-            return serverProgress;
+            return;
         }
         serverProgress.finishBeginPerson = true;
-        return serverProgress;
+        return;
     }
 
     private ServerProgress doPersonAtEndDay(ServerProgress progress) {
@@ -76,8 +86,18 @@ public class Server {
         return progress;
     }
 
-    private ServerProgress doRoomNextDay(ServerProgress progress) {
-        return progress;
+    private void doRoomNextDay() {
+        if (serverProgress.finishMidleRoom) return;
+        for (Room room : serverProgress.roomProgresses.keySet()) {
+            RoomProgress roomProgress = serverProgress.roomProgresses.get(room);
+            roomProgress = room.doStep(roomProgress);
+            serverProgress.roomProgresses.put(room, roomProgress);
+            if (roomProgress.isNeedShowActiity())
+                serverProgress.setEvent(roomProgress.getEvent());
+            return;
+        }
+        serverProgress.finishMidleRoom = true;
+        return;
     }
 
     private ServerProgress doRoomAtEndDay(ServerProgress progress) {
@@ -87,12 +107,12 @@ public class Server {
     private void doEnd() {
         if (serverProgress.finishEnd)
             return;
-        serverProgress.setEvent(getPlayer().getTotal());
+        serverProgress.setEvent(new TotalEvent(getPlayer().getTotal()));
         serverProgress.finishEnd = true;
     }
 
     public ServerProgress initiateNewDay() {
-        serverProgress = new ServerProgress();
+        serverProgress = new ServerProgress(state.getVisibleRooms(), state.getAllPerson());
         for (Person person : state.getAllPerson()) {
             person.initiateNewDay();
         }
@@ -108,7 +128,6 @@ public class Server {
     public boolean isFinishedNewDay() {
         return serverProgress.isFinished();
     }
-
 
 
     public Collection<Person> getVisibleGirls() {
@@ -131,10 +150,14 @@ public class Server {
     public Rest getRest() {
         return state.getRest();
     }
+
     public Market getMarket() {
         return state.getMarket();
     }
-    public Maid getMaid(){return state.getMaid();}
+
+    public Maid getMaid() {
+        return state.getMaid();
+    }
 
 
     public Person getPersonWithID(int id) {
@@ -143,18 +166,26 @@ public class Server {
 
 
     public boolean buyPerson(Person person) {
-        if(
-            state.getPlayer().spendMoney((long) person.cost)) {
+        if (state.getPlayer().spendMoney(new EventDiff(EventType.BUY, person.cost))) {
             getMarket().deletePerson(person);
             getRest().addPerson(person);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
     public Player getPlayer() {
         return state.getPlayer();
+    }
+
+    private static final Server defaultServer = new Server();
+
+    public static Server getDefault() {
+        return defaultServer;
+    }
+
+    public boolean spendMoney(EventDiff event) {
+        return getPlayer().spendMoney(event);
     }
 }

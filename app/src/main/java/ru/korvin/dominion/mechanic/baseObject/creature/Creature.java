@@ -5,9 +5,12 @@ import java.io.Serializable;
 import ru.korvin.dominion.mechanic.baseObject.creature.gameClass.Archetype;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
-import ru.korvin.dominion.mechanic.baseObject.skill.SkillList;
+import ru.korvin.dominion.mechanic.baseObject.creature.skill.SkillList;
+import ru.korvin.dominion.mechanic.baseObject.creature.stats.Stats;
+import ru.korvin.dominion.mechanic.server.event.EventDiff;
+import ru.korvin.dominion.mechanic.server.event.EventsHistoryList;
 
-
+//TODO переделать на generic
 public class Creature implements Serializable {
     protected int nameId;
     protected int id;
@@ -17,6 +20,7 @@ public class Creature implements Serializable {
     protected SkillList skillList;
     public Archetype archetype;
     protected long money;
+    protected EventsHistoryList historyList;
 
     public Creature(int id, int nameId, Sex sex, Race race, Stats stats, SkillList skills) {
         this.id = id;
@@ -84,5 +88,22 @@ public class Creature implements Serializable {
 
     public SkillList getSkillList() {
         return skillList;
+    }
+
+    public boolean spendMoney(EventDiff diff) {
+        if (this.money > diff.money) {
+            money -= diff.money;
+            historyList.addDiff(new EventDiff(diff.type, diff.money));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean applyDiff(EventDiff diff) {
+        // this.stats
+
+        this.skillList.apply(diff.skillDiff);
+        return false;
     }
 }
