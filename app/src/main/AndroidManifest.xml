@@ -64,7 +64,10 @@
         </activity>
         <activity
             android:name=".activity.newday.StatsActivity"
-            android:label="@string/title_activity_stats"></activity>
+            android:label="@string/title_activity_stats" />
+        <activity
+            android:name=".activity.newday.DungeonActivity"
+            android:label="@string/title_activity_dungeon"></activity>
     </application>
 
 </manifest>

@@ -5,14 +5,13 @@ import java.util.List;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.room.LocationType;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
-import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.Dangeon;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.Dungeon;
 import ru.korvin.dominion.mechanic.baseObject.creature.Creature;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.gameClass.Archetype;
-import ru.korvin.dominion.mechanic.server.progress.IllegalProgressStateException;
 import ru.korvin.dominion.mechanic.util.Util;
 
-public abstract class simpleDungeon extends Dangeon {
+public abstract class simpleDungeon extends Dungeon {
     private Group adventure;
     private Group mob;
 

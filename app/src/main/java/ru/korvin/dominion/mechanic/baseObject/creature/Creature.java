@@ -1,12 +1,18 @@
 package ru.korvin.dominion.mechanic.baseObject.creature;
 
-import java.io.Serializable;
+import android.graphics.Point;
 
+import java.io.Serializable;
+import java.util.List;
+
+import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Rest;
+import ru.korvin.dominion.mechanic.baseObject.creature.battle.TacticType;
 import ru.korvin.dominion.mechanic.baseObject.creature.gameClass.Archetype;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
 import ru.korvin.dominion.mechanic.baseObject.creature.skill.SkillList;
 import ru.korvin.dominion.mechanic.baseObject.creature.stats.Stats;
+import ru.korvin.dominion.mechanic.server.GameUtil;
 import ru.korvin.dominion.mechanic.server.event.EventDiff;
 import ru.korvin.dominion.mechanic.server.event.EventsHistoryList;
 
@@ -106,4 +112,86 @@ public class Creature implements Serializable {
         this.skillList.apply(diff.skillDiff);
         return false;
     }
+
+    //region battle
+    private transient TacticType tacticType = TacticType.REST;
+    private transient Point nextTarget;
+
+    public void selectNextTarget(List<List<Creature>> targets, int distance) {
+        switch (distance) {
+            case 0:
+                selectNextTargetClose(targets);
+            case 1:
+                selectNextTargetMidle(targets);
+            case 2:
+                selectNextTargetRange(targets);
+            default:
+                selectNextTargetVeryLongRange();
+
+        }
+    }
+
+    public boolean isClose() {
+        return true;
+    }
+
+    public boolean isMid() {
+        return GameUtil.random.nextBoolean();
+    }
+
+    public boolean isRange() {
+        return GameUtil.dice1D4() == 1;
+    }
+
+    public void selectNextTargetClose(List<List<Creature>> targets) {
+        if (isClose()) {
+            this.nextTarget = GameUtil.selectTargetInRow(targets, 0);
+            if (nextTarget != null) {
+                tacticType = TacticType.CLOSE;
+            } else {
+                selectInvalid();
+            }
+
+        } else {
+            selectInvalid();
+        }
+    }
+
+    public void selectNextTargetMidle(List<List<Creature>> targets) {
+        if (isMid()) {
+            this.nextTarget = GameUtil.selectTargetinRows(targets, 0, 1);
+            if (nextTarget != null) {
+                tacticType = TacticType.RANGE;
+            } else {
+                selectInvalid();
+            }
+
+        } else {
+            selectInvalid();
+        }
+    }
+
+    public void selectNextTargetRange(List<List<Creature>> targets) {
+        if (isMid()) {
+            this.nextTarget = GameUtil.selectTargetInRow(targets, 0);
+            if (nextTarget != null) {
+                tacticType = TacticType.RANGE;
+            } else {
+                selectInvalid();
+            }
+
+        } else {
+            selectInvalid();
+        }
+    }
+
+    private void selectNextTargetVeryLongRange() {
+        selectInvalid();
+    }
+
+    private void selectInvalid() {
+        tacticType = TacticType.REST;
+        nextTarget = null;
+    }
+    //region battle
 }

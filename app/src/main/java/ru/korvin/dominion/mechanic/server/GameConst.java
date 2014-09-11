@@ -16,4 +16,7 @@ public class GameConst {
     public static final int INITIAL_MONTH = Calendar.NOVEMBER;
     public static final int INITIAL_DAY = 16;
 
+
+    public static final int INVALID_TARGET = Integer.MIN_VALUE;
+
 }

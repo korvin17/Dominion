@@ -37,7 +37,7 @@ public class GirlInfoListActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_girlinfo_list);
+        setContentView(R.layout.fragment_girl_info_list);
         // getActionBar().setHomeButtonEnabled(true);
         if (findViewById(R.id.girlinfo_detail_container) != null) {
             // The detail container view will be present only in the

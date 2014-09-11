@@ -1,6 +1,7 @@
 package ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.simple;
 
 import ru.korvin.dominion.mechanic.baseObject.creature.Creature;
+import ru.korvin.dominion.mechanic.server.GameConst;
 import ru.korvin.dominion.mechanic.util.Util;
 
 public class Group {
@@ -9,7 +10,7 @@ public class Group {
     Creature[] dd = new Creature[0];
     Creature[] healers = new Creature[0];
 
-
+    GameConst t;
     public int getDamage() {
         int result = 0;
         for (Creature creature : tank) {
