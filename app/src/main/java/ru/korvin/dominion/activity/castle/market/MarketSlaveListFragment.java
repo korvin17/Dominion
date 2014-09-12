@@ -38,7 +38,6 @@ public class MarketSlaveListFragment extends ListFragment {
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1, market.getAvailableSlave()
         );
-        // TODO: replace with a real list adapter.
         setListAdapter(adapter);
     }
 

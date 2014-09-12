@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_weight=".6"
-            android:id="@+id/market_slave_image_view"
+            android:id="@+id/slave_image_view"
             android:src="@drawable/slave_market_2"
             android:layout_height="wrap_content"
             android:layout_gravity="top" />
@@ -45,7 +45,7 @@
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/market_slave_girl_stats_container"
+        android:id="@+id/slave_girl_stats_container"
         android:layout_weight=".2"></FrameLayout>
 
 

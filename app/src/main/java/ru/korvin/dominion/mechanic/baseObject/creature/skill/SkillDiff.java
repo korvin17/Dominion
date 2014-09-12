@@ -1,9 +1,10 @@
 package ru.korvin.dominion.mechanic.baseObject.creature.skill;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SkillDiff {
+public class SkillDiff implements Serializable{
     public Map<Integer, Integer> diff = new HashMap<>();
 
     public void addExp(int skillId, int exp) {

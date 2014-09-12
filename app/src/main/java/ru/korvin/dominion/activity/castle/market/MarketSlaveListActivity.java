@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
+import ru.korvin.dominion.mechanic.server.GameConst;
 
 import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
 
@@ -82,7 +83,7 @@ public class MarketSlaveListActivity extends Activity
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putInt(MarketSlaveDetailFragment.ARG_SLAVE_ID, slave.getId());
+            arguments.putInt(GameConst.ARG_SLAVE_ID, slave.getId());
             MarketSlaveDetailFragment fragment = new MarketSlaveDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
@@ -93,7 +94,7 @@ public class MarketSlaveListActivity extends Activity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, MarketSlaveDetailActivity.class);
-            detailIntent.putExtra(MarketSlaveDetailFragment.ARG_SLAVE_ID, slave.getId());
+            detailIntent.putExtra(GameConst.ARG_SLAVE_ID, slave.getId());
             startActivity(detailIntent);
         }
     }

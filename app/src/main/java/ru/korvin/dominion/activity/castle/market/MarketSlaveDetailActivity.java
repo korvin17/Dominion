@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import ru.korvin.dominion.R;
+import ru.korvin.dominion.mechanic.server.GameConst;
 
 import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
 
@@ -40,8 +41,8 @@ public class MarketSlaveDetailActivity extends Activity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putInt(MarketSlaveDetailFragment.ARG_SLAVE_ID,
-                    getIntent().getExtras().getInt(MarketSlaveDetailFragment.ARG_SLAVE_ID));
+            arguments.putInt(GameConst.ARG_SLAVE_ID,
+                    getIntent().getExtras().getInt(GameConst.ARG_SLAVE_ID));
             MarketSlaveDetailFragment fragment = new MarketSlaveDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()

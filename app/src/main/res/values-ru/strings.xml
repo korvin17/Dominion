@@ -39,5 +39,6 @@
 
     <string name="tab_castle_name">замок</string>
     <string name="tab_stats_name">Обзор</string>
+    <string name="tab_girls_name">девушки</string>
     <string name="tab_world_name">Мир</string>
 </resources>

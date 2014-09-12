@@ -1,7 +1,9 @@
 package ru.korvin.dominion.mechanic.baseObject.creature.stats;
 
+import java.io.Serializable;
+
 //сделсь полузахордкожены
-public class StatsDiff {
+public class StatsDiff implements Serializable{
     public int hp;
     public int energy;
 

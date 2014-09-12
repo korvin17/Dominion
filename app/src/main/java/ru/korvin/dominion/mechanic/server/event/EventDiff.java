@@ -1,12 +1,14 @@
 package ru.korvin.dominion.mechanic.server.event;
 
+import java.io.Serializable;
+
 import ru.korvin.dominion.mechanic.baseObject.creature.skill.SkillDiff;
 import ru.korvin.dominion.mechanic.baseObject.creature.stats.StatsDiff;
 import ru.korvin.dominion.mechanic.baseObject.item.ItemDiff;
 
 //TODO перефигачить этот класс в EVENT а тот в другое проиществие
 /*Класс хранящий диф по разным событияям*/
-public class EventDiff {
+public class EventDiff implements Serializable {
     public EventType type;
     public long money;
     public StatsDiff statsDiff;

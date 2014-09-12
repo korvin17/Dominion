@@ -1,10 +1,11 @@
 package ru.korvin.dominion.mechanic.server.event;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 //TODO разбить на чать для людей и часть для предметов
-public class EventsHistoryList {
+public class EventsHistoryList implements Serializable {
     private EventDiff total;
     private List<EventDiff> events;
 

@@ -12,11 +12,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -27,6 +24,7 @@ import ru.korvin.dominion.R;
 import ru.korvin.dominion.activity.castle.CastleFragment;
 import ru.korvin.dominion.activity.castle.market.MarketSlaveListActivity;
 import ru.korvin.dominion.activity.castle.room.WorkRoomMainFragment;
+import ru.korvin.dominion.activity.girlinfo.GirlInfoListMainFragment;
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.dao.storage.DB;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
@@ -169,21 +167,6 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
                 recreate();
             }
         }, DB.COLUMN_NAME_NAME);
-
-        /*
-        builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int arg1) {
-                boolean buy=GameApplication.getDefaultServer().buyPerson(slave);
-                mBuyButton.setEnabled(!buy);
-                if(buy)
-                    callback.buyPerson(slave);
-            }
-        });
-        builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int arg1) {
-
-            }
-        });*/
         builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
@@ -271,6 +254,8 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
                 case 1:
                     return WorkRoomMainFragment.newInstance();
                 case 2:
+                    return GirlInfoListMainFragment.newInstance();
+                case 3:
                     return CastleFragment.newInstance();
                 default:
                     return null;
@@ -279,7 +264,7 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
 
         @Override
@@ -291,9 +276,12 @@ public class MainTabActivity extends Activity implements ActionBar.TabListener, 
                 case 1:
                     return getString(R.string.tab_castle_name).toUpperCase(l);
                 case 2:
+                    return getString(R.string.tab_girls_name).toUpperCase(l);
+                case 3:
                     return getString(R.string.tab_world_name).toUpperCase(l);
             }
             return null;
         }
+
     }
 }

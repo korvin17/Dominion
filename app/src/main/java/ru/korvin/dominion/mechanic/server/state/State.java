@@ -92,4 +92,7 @@ public class State implements Serializable {
         return generator;
     }
 
+    public List<Person> getVisibleGirls() {
+        return persons;
+    }
 }

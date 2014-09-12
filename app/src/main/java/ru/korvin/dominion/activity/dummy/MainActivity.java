@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import ru.korvin.dominion.R;
-import ru.korvin.dominion.activity.girlinfo.GirlInfoListActivity;
+import ru.korvin.dominion.activity.girlinfo.GirlInfoListMainFragment;
 
 
 public class MainActivity extends Activity
@@ -136,7 +136,7 @@ public class MainActivity extends Activity
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), GirlInfoListActivity.class);
+                            Intent intent = new Intent(getActivity(), GirlInfoListMainFragment.class);
                             startActivity(intent);
                         }
                     }

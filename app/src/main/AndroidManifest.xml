@@ -12,13 +12,8 @@
             android:name=".activity.dummy.MainActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".activity.girlinfo.GirlInfoListActivity"
-            android:label="@string/title_girlinfo_list"
-            android:parentActivityName=".activity.main.MainTabActivity" />
-        <activity
             android:name=".activity.girlinfo.GirlInfoDetailActivity"
-            android:label="@string/title_girlinfo_detail"
-            android:parentActivityName=".activity.girlinfo.GirlInfoListActivity">
+            android:label="@string/title_girlinfo_detail">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.korvin.dominion.GirlInfoListActivity" />

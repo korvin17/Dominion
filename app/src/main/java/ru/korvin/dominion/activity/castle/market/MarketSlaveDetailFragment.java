@@ -15,6 +15,7 @@ import ru.korvin.dominion.R;
 import ru.korvin.dominion.activity.castle.stats.GirlStatsInfoFragment;
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
+import ru.korvin.dominion.mechanic.server.GameConst;
 
 /**
  * A fragment representing a single MarketSlave detail screen.
@@ -23,7 +24,6 @@ import ru.korvin.dominion.mechanic.baseObject.creature.Person;
  * on handsets.
  */
 public class MarketSlaveDetailFragment extends Fragment implements View.OnClickListener {
-    public static final String ARG_SLAVE_ID = "slave_id";
     private Person slave;
     private Button mBuyButton;
     private ImageView mImageView;
@@ -39,10 +39,11 @@ public class MarketSlaveDetailFragment extends Fragment implements View.OnClickL
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_SLAVE_ID)) {
-            slave = GameApplication.getDefaultGameApplication().getServer().getPersonWithID(getArguments().getInt(ARG_SLAVE_ID));
+        if (getArguments().containsKey(GameConst.ARG_SLAVE_ID)) {
+            slave = GameApplication.getDefaultGameApplication().getServer().getPersonWithID(getArguments().getInt(GameConst.ARG_SLAVE_ID));
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,12 +51,12 @@ public class MarketSlaveDetailFragment extends Fragment implements View.OnClickL
         View rootView = inflater.inflate(R.layout.fragment_marketslave_detail, container, false);
         mBuyButton = (Button) rootView.findViewById(R.id.market_slave_buy_button);
         mBuyButton.setOnClickListener(this);
-        mImageView= (ImageView) rootView.findViewById(R.id.market_slave_image_view);
+        mImageView= (ImageView) rootView.findViewById(R.id.slave_image_view);
 
         if (slave != null) {
             GirlStatsInfoFragment statsInfoFragment = GirlStatsInfoFragment.newInstance(slave);
             getFragmentManager().beginTransaction()
-                    .replace(R.id.market_slave_girl_stats_container, statsInfoFragment)
+                    .replace(R.id.slave_girl_stats_container, statsInfoFragment)
                     .commit();
             mImageView.setImageResource(slave.getImageMarketSlave());
         }

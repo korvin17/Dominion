@@ -48,6 +48,7 @@
     <string name="main_tab_load_title">Load</string>
     <string name="tab_castle_name">castle</string>
     <string name="tab_stats_name">stats</string>
+    <string name="tab_girls_name">girls</string>
     <string name="tab_world_name">world</string>
     <string name="title_activity_dungeon">DungeonActivity</string>
 

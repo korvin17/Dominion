@@ -27,6 +27,7 @@ public class Creature implements Serializable {
     protected SkillList skillList;
     public Archetype archetype;
     protected long money;
+    protected EventsHistoryList historyListOld;
     protected EventsHistoryList historyList;
 
     public Creature(int id, int nameId, Sex sex, Race race, Stats stats, SkillList skills) {

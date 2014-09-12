@@ -2,6 +2,7 @@ package ru.korvin.dominion.mechanic.server;
 
 
 import java.util.Collection;
+import java.util.List;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
@@ -38,6 +39,7 @@ public class Server {
                 GameConst.INITIAL_HP, GameConst.INITIAL_MP, GameConst.INITIAL_ENERGY,
                 GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY);
         this.state = new State(player, GameConst.INITIAL_YEAR, GameConst.INITIAL_MONTH, GameConst.INITIAL_DAY);
+        initPerson();
     }
 
     //TODO убрать присвоение прогресса
@@ -110,9 +112,7 @@ public class Server {
         serverProgress.setEvent(new TotalEvent(getPlayer().getTotal()));
         serverProgress.finishEnd = true;
     }
-
-    public ServerProgress initiateNewDay() {
-        serverProgress = new ServerProgress(state.getVisibleRooms(), state.getAllPerson());
+    public void initPerson(){
         for (Person person : state.getAllPerson()) {
             person.initiateNewDay();
         }
@@ -123,6 +123,11 @@ public class Server {
             room.initateNewDay();
         }
         getPlayer().initNextDay();
+    }
+
+    public ServerProgress initiateNewDay() {
+        serverProgress = new ServerProgress(state.getVisibleRooms(), state.getAllPerson());
+        initPerson();
         return serverProgress;
     }
 
@@ -131,9 +136,8 @@ public class Server {
     }
 
 
-    public Collection<Person> getVisibleGirls() {
-        return null;
-        //     return state.getGirls();
+    public List<Person> getVisibleGirls() {
+        return state.getVisibleGirls();
     }
 
     public Room[] getVisibleRooms() {

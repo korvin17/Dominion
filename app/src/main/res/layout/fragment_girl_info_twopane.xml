@@ -8,7 +8,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context="ru.korvin.dominion.activity.girlinfo.GirlInfoListActivity">
+    tools:context="ru.korvin.dominion.activity.girlinfo.GirlInfoListMainFragment">
 
     <!--
     This layout is a two-pane layout for the GirlsInfo
@@ -28,9 +28,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         tools:layout="@android:layout/list_content" />
-
     <FrameLayout
-        android:id="@+id/girlinfo_detail_container"
+        android:id="@+id/girl_info_detail_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"></FrameLayout>

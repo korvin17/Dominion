@@ -19,6 +19,7 @@ public class Player extends Creature {
     }
 
     public void initNextDay() {
+        historyListOld=historyList;
         historyList = new EventsHistoryList();
     }
 
