@@ -5,6 +5,7 @@ import android.graphics.Point;
 import java.io.Serializable;
 import java.util.List;
 
+import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.Group;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Rest;
 import ru.korvin.dominion.mechanic.baseObject.creature.battle.TacticType;
 import ru.korvin.dominion.mechanic.baseObject.creature.gameClass.Archetype;
@@ -117,7 +118,7 @@ public class Creature implements Serializable {
     private transient TacticType tacticType = TacticType.REST;
     private transient Point nextTarget;
 
-    public void selectNextTarget(List<List<Creature>> targets, int distance) {
+    public void selectNextTarget(Group targets, int distance) {
         switch (distance) {
             case 0:
                 selectNextTargetClose(targets);
@@ -143,9 +144,9 @@ public class Creature implements Serializable {
         return GameUtil.dice1D4() == 1;
     }
 
-    public void selectNextTargetClose(List<List<Creature>> targets) {
+    private void selectNextTargetClose(Group targets) {
         if (isClose()) {
-            this.nextTarget = GameUtil.selectTargetInRow(targets, 0);
+            this.nextTarget = GameUtil.selectTargetinRows(targets, 1);
             if (nextTarget != null) {
                 tacticType = TacticType.CLOSE;
             } else {
@@ -157,9 +158,9 @@ public class Creature implements Serializable {
         }
     }
 
-    public void selectNextTargetMidle(List<List<Creature>> targets) {
+    private void selectNextTargetMidle(Group targets) {
         if (isMid()) {
-            this.nextTarget = GameUtil.selectTargetinRows(targets, 0, 1);
+            this.nextTarget = GameUtil.selectTargetinRows(targets, 2);
             if (nextTarget != null) {
                 tacticType = TacticType.RANGE;
             } else {
@@ -171,9 +172,9 @@ public class Creature implements Serializable {
         }
     }
 
-    public void selectNextTargetRange(List<List<Creature>> targets) {
+    private void selectNextTargetRange(Group targets) {
         if (isMid()) {
-            this.nextTarget = GameUtil.selectTargetInRow(targets, 0);
+            this.nextTarget = GameUtil.selectTargetinRows(targets, 1);
             if (nextTarget != null) {
                 tacticType = TacticType.RANGE;
             } else {
@@ -192,6 +193,18 @@ public class Creature implements Serializable {
     private void selectInvalid() {
         tacticType = TacticType.REST;
         nextTarget = null;
+    }
+
+    public void fate(Group targets) {
+        if (isDied()) return;
+        Creature target = targets.get(nextTarget);
+        if (target != null)
+            fate(target);
+    }
+
+    public void fate(Creature target) {
+        int damage = getAttack();
+        target.doDamage(damage);
     }
     //region battle
 }

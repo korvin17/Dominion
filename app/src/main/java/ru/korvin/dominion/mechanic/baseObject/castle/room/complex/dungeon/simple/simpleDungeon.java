@@ -5,22 +5,24 @@ import java.util.List;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.room.LocationType;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
-import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.Dungeon;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.DungeonRoom;
 import ru.korvin.dominion.mechanic.baseObject.creature.Creature;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.gameClass.Archetype;
+import ru.korvin.dominion.mechanic.baseObject.generator.Generator;
 import ru.korvin.dominion.mechanic.util.Util;
 
-public abstract class simpleDungeon extends Dungeon {
+public abstract class simpleDungeon extends DungeonRoom {
     private Group adventure;
     private Group mob;
 
-    public simpleDungeon(int id, LocationType type, int level) {
-        super(id, type, level);
+    public simpleDungeon(Generator generator) {
+        super(generator);
+
     }
 
     @Override
-    public RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress){
+    public RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress) {
         initiate();
         while (adventure.isAlive() && mob.isAlive()) {
             int adDamage = adventure.getDamage();

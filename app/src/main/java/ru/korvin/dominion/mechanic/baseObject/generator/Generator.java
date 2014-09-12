@@ -30,6 +30,7 @@ public class Generator implements Serializable {
         REST_ID = increment_room++;
         MARKET_ID = increment_room++;
         MAID_ID = increment_room++;
+        DUNGEON_ROOM_ID = increment_room++;
     }
 
     public Person getPersonWithID(int id) {
@@ -87,5 +88,6 @@ public class Generator implements Serializable {
     public final int REST_ID;
     public final int MARKET_ID;
     public final int MAID_ID;
+    public final int DUNGEON_ROOM_ID;
 
 }

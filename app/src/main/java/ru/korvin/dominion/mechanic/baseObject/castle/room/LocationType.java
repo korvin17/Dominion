@@ -1,5 +1,5 @@
 package ru.korvin.dominion.mechanic.baseObject.castle.room;
 
 public enum LocationType {
-    workRoom, invisibleRoom, complexRoom
+    workRoom, invisibleRoom, locationType, complexRoom
 }
