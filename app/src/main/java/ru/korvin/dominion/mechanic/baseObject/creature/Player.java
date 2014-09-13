@@ -7,7 +7,7 @@ import ru.korvin.dominion.mechanic.baseObject.creature.stats.Stats;
 import ru.korvin.dominion.mechanic.server.event.EventDiff;
 import ru.korvin.dominion.mechanic.server.event.EventsHistoryList;
 
-public class Player extends Creature {
+public class Player extends Person {
     protected String name;
 
     public Player(String name, Sex sex, Race race, long money,
@@ -16,14 +16,5 @@ public class Player extends Creature {
         super(0, 0, sex, race, new Stats(hp, mp, energy, strength, dexterity, constitution, intelligence, wisdom, charisma), new SkillList());
         this.name = name;
         this.money = money;
-    }
-
-    public void initNextDay() {
-        historyListOld=historyList;
-        historyList = new EventsHistoryList();
-    }
-
-    public EventDiff getTotal() {
-        return historyList.getTotal();
     }
 }

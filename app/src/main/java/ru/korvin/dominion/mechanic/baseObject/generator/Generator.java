@@ -93,4 +93,7 @@ public class Generator implements Serializable {
     public final int MAID_ID;
     public final int DUNGEON_ROOM_ID;
 
+
+
+
 }

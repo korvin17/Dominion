@@ -46,8 +46,7 @@ public class SaveRecord {
             oos.writeObject(state);
             return baos.toByteArray();
         } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException(e);
         }
     }
 

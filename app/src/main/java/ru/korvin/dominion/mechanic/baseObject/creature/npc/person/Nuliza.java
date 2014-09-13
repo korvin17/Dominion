@@ -9,7 +9,7 @@ import ru.korvin.dominion.mechanic.baseObject.creature.stats.Stats;
 
 public class Nuliza extends Person {
     public Nuliza(int id) {
-        super(id, R.string.creature_Nuliza_name, Sex.female, Race.Human, new Stats(R.array.creature_Saber_stats), new SkillList());
+        super(id, R.string.creature_Nuliza_name, Sex.female, Race.HUMAN, new Stats(R.array.creature_Saber_stats), new SkillList());
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.DungeonProgress;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.DungeonRoom;
 import ru.korvin.dominion.mechanic.baseObject.creature.Creature;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
@@ -21,7 +22,7 @@ public abstract class simpleDungeon extends DungeonRoom {
     }
 
     @Override
-    public RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress) {
+    public RoomProgress doStepForEveryOnePerson(DungeonProgress currentRoomProgress) {
         initiate();
         while (adventure.isAlive() && mob.isAlive()) {
             int adDamage = adventure.getDamage();

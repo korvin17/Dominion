@@ -8,18 +8,18 @@ import java.util.List;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.server.progress.Progress;
 
-public abstract class Room implements Serializable {
+public abstract class Room<P extends RoomProgress>  implements Serializable  {
     protected List<Person> persons;
     protected LocationType type;
 
     public RoomProgress doStep(RoomProgress progress) {
-        return doStepForEveryOnePerson((RoomProgress) progress);
-    }
+        if(progress==null)
+            progress=getNewProgress();
 
-    protected RoomProgress doStepForEveryOnePerson(RoomProgress currentRoomProgress) {
-        if(currentRoomProgress==null)
-            currentRoomProgress = new RoomProgress(persons.size());
-        //resultProgress.startExecute();
+        return doStepForEveryOnePerson((P)progress);
+    }
+    protected abstract P getNewProgress();
+    protected RoomProgress doStepForEveryOnePerson(P currentRoomProgress) {
         boolean finished = true;
         for (Person person : persons) {
             Progress currentPersonProgress = currentRoomProgress.isReady() ? new RoomProgress(persons.size()) : (RoomProgress) currentRoomProgress.get(person);
@@ -65,7 +65,7 @@ public abstract class Room implements Serializable {
     }
 
 
-    public void initateNewDay() {
+    public void initNewDay() {
 
     }
 

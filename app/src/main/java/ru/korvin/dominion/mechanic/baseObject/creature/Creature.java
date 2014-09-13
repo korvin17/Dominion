@@ -35,6 +35,7 @@ public class Creature implements Serializable {
         this.race = race;
         this.stats = stats;
         this.skillList = skills;
+        this.historyList=new EventsHistoryList();
     }
 
     public int getAttack() {
@@ -107,8 +108,6 @@ public class Creature implements Serializable {
     }
 
     public boolean applyDiff(EventDiff diff) {
-        // this.stats
-
         this.skillList.apply(diff.skillDiff);
         return false;
     }

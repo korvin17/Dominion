@@ -38,7 +38,6 @@ public class Server {
                 GameConst.INITIAL_HP, GameConst.INITIAL_MP, GameConst.INITIAL_ENERGY,
                 GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY, GameConst.INITIAL_ABILITY);
         this.state = new State(player, GameConst.INITIAL_YEAR, GameConst.INITIAL_MONTH, GameConst.INITIAL_DAY);
-        initPerson();
     }
 
     //TODO убрать присвоение прогресса
@@ -110,23 +109,23 @@ public class Server {
             return;
         serverProgress.setEvent(new TotalEvent(getPlayer().getTotal()));
         serverProgress.finishEnd = true;
+        initPerson();
     }
     public void initPerson(){
         for (Person person : state.getAllPerson()) {
             person.initiateNewDay();
         }
         for (Room room : state.getVisibleRooms()) {
-            room.initateNewDay();
+            room.initNewDay();
         }
         for (Room room : state.getWorkRooms()) {
-            room.initateNewDay();
+            room.initNewDay();
         }
         getPlayer().initNextDay();
     }
 
     public ServerProgress initiateNewDay() {
         serverProgress = new ServerProgress(state.getVisibleRooms(), state.getAllPerson());
-        initPerson();
         return serverProgress;
     }
 

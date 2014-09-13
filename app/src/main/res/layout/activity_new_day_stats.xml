@@ -24,4 +24,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="228dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/end"
+        android:id="@+id/button_end"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/money_profit"
+        android:layout_marginLeft="154dp" />
+
 </RelativeLayout>

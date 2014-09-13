@@ -13,6 +13,7 @@ import ru.korvin.dominion.mechanic.baseObject.creature.stats.StatsDiff;
 import ru.korvin.dominion.mechanic.server.Server;
 import ru.korvin.dominion.mechanic.server.event.EventDiff;
 import ru.korvin.dominion.mechanic.server.event.EventType;
+import ru.korvin.dominion.mechanic.server.event.EventsHistoryList;
 import ru.korvin.dominion.mechanic.server.progress.PersonProgress;
 
 public class Person extends Creature {
@@ -104,5 +105,12 @@ public class Person extends Creature {
         progress = doNextDayEnd(progress);
         return progress;
     }
+    public void initNextDay() {
+        historyListOld=historyList;
+        historyList = new EventsHistoryList();
+    }
 
+    public EventDiff getTotal() {
+        return historyList.getTotal();
+    }
 }

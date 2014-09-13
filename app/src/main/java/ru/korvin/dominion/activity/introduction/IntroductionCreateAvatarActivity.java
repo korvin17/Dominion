@@ -70,7 +70,7 @@ public class IntroductionCreateAvatarActivity extends Activity implements View.O
             if (radioButtonMale.isChecked()) sex = Sex.male;
             if (radioButtonFemale.isChecked()) sex = Sex.female;
             if (radioButtonFutanari.isChecked()) sex = Sex.futanari;
-            ((GameApplication) getApplication()).init(name, sex, Race.Human);
+            ((GameApplication) getApplication()).init(name, sex, Race.HUMAN);
             Intent intent = new Intent(this, MainTabActivity.class);
             this.startActivity(intent);
         }

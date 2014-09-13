@@ -3,15 +3,18 @@ package ru.korvin.dominion.activity.newday;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.mechanic.server.Server;
 import ru.korvin.dominion.mechanic.server.event.type.TotalEvent;
 
-public class StatsActivity extends NextDayActivity<TotalEvent> {
+public class StatsActivity extends NextDayActivity<TotalEvent> implements View.OnClickListener {
     private TextView mMoneyTextView;
     private TextView mMoneyProfitTextView;
+    private Button mEndButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +22,11 @@ public class StatsActivity extends NextDayActivity<TotalEvent> {
         setContentView(R.layout.activity_new_day_stats);
         mMoneyTextView = (TextView) findViewById(R.id.money);
         mMoneyProfitTextView = (TextView) findViewById(R.id.money_profit);
+        mEndButton= (Button) findViewById(R.id.button_end);
 
         mMoneyTextView.setText(Long.toString(Server.getDefault().getPlayer().getMoney()));
         mMoneyProfitTextView.setText(Long.toString(mEvent.moneyDiff));
+        mEndButton.setOnClickListener(this);
     }
 
 
@@ -44,4 +49,8 @@ public class StatsActivity extends NextDayActivity<TotalEvent> {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onClick(View v) {
+        super.showNextEvent();
+    }
 }

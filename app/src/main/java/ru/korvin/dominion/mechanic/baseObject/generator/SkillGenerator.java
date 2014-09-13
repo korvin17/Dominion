@@ -1,5 +1,6 @@
-package ru.korvin.dominion.mechanic.baseObject.creature.skill;
+package ru.korvin.dominion.mechanic.baseObject.generator;
 
+import ru.korvin.dominion.mechanic.baseObject.creature.skill.Skill;
 import ru.korvin.dominion.mechanic.baseObject.creature.skill.simple.Maid;
 
 public class SkillGenerator {

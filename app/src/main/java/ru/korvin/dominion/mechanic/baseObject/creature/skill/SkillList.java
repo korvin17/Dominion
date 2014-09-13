@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import ru.korvin.dominion.mechanic.baseObject.creature.skill.util.SkillListIterator;
+import ru.korvin.dominion.mechanic.baseObject.generator.SkillGenerator;
 
 //TODO сделать на основе мапы id хранить глобально в генераторе а тут просто значения
 public class SkillList implements Serializable, Iterable<Skill> {
@@ -43,6 +44,7 @@ public class SkillList implements Serializable, Iterable<Skill> {
     }
 
     public void apply(SkillDiff skillDiff) {
+        if(skillDiff==null)return;
         for (int skillid : skillDiff.diff.keySet()) {
             int exp = skillDiff.diff.get(skillid);
             Skill skill = getSkillWithID(skillid);

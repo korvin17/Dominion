@@ -51,5 +51,6 @@
     <string name="tab_girls_name">girls</string>
     <string name="tab_world_name">world</string>
     <string name="title_activity_dungeon">DungeonActivity</string>
+    <string name="end">конец</string>
 
 </resources>

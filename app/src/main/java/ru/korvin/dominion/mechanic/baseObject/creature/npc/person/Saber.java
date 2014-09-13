@@ -9,7 +9,7 @@ import ru.korvin.dominion.mechanic.baseObject.creature.stats.Stats;
 
 public class Saber extends Person {
     public Saber(int id) {
-        super(id, R.string.creature_Saber_name, Sex.female, Race.Human, new Stats(R.array.creature_Saber_stats), new SkillList());
+        super(id, R.string.creature_Saber_name, Sex.female, Race.HUMAN, new Stats(R.array.creature_Saber_stats), new SkillList());
     }
 
 }

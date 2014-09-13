@@ -8,13 +8,11 @@ import ru.korvin.dominion.mechanic.baseObject.creature.Creature;
 import ru.korvin.dominion.mechanic.server.GameConst;
 
 public class Dungeon {
-    private final LocationType locationType;
     private final int id;
     protected int level;
 
-    public Dungeon(int id, LocationType type, int level) {
+    public Dungeon(int id, int level) {
         this.level = level;
-        this.locationType = type;
         this.id = id;
 
     }

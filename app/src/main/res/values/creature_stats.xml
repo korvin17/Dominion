@@ -20,4 +20,50 @@
     <string-array name="creature_skill_Saber">
 
     </string-array>
+
+    <integer-array name="creature_rat_1_stats">
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+
+    <integer-array name="creature_rat_2_stats">
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+    </integer-array>
+
+    <integer-array name="creature_rat_3_stats">
+        <item>5</item>
+        <item>6</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+
+    <integer-array name="creature_rat_4_stats">
+        <item>5</item>
+        <item>7</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+
+    <integer-array name="creature_rat_5_stats">
+        <item>8</item>
+        <item>3</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+
 </resources>
