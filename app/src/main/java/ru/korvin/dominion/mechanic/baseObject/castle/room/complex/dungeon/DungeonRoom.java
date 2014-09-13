@@ -8,7 +8,7 @@ import ru.korvin.dominion.mechanic.server.GameUtil;
 import ru.korvin.dominion.mechanic.server.Server;
 import ru.korvin.dominion.mechanic.server.event.EventDiff;
 
-public abstract class DungeonRoom extends Room {
+public class DungeonRoom extends Room {
     private int name_id;
     private int image_id;
 

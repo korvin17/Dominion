@@ -1,6 +1,5 @@
 package ru.korvin.dominion.activity.castle.room;
 
-import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;

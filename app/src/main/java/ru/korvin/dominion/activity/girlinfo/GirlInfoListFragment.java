@@ -1,16 +1,11 @@
 package ru.korvin.dominion.activity.girlinfo;
 
-import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import ru.korvin.dominion.activity.dummy.DummyContent;
-import ru.korvin.dominion.activity.main.MainTabActivity;
-import ru.korvin.dominion.dao.GameApplication;
-import ru.korvin.dominion.mechanic.baseObject.castle.room.market.Market;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.server.Server;
 

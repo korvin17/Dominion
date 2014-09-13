@@ -1,20 +1,14 @@
 package ru.korvin.dominion.activity.newday;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v4.view.GestureDetectorCompat;
-import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
-import ru.korvin.dominion.R;
 import ru.korvin.dominion.activity.main.MainTabActivity;
 import ru.korvin.dominion.activity.main.util.SystemUiHider;
 import ru.korvin.dominion.dao.GameApplication;

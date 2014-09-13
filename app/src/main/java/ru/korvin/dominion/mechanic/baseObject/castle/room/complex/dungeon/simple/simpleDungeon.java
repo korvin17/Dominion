@@ -3,7 +3,6 @@ package ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.simpl
 import java.util.LinkedList;
 import java.util.List;
 
-import ru.korvin.dominion.mechanic.baseObject.castle.room.LocationType;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.RoomProgress;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.DungeonRoom;
 import ru.korvin.dominion.mechanic.baseObject.creature.Creature;

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
-import ru.korvin.dominion.mechanic.server.progress.IllegalProgressStateException;
 import ru.korvin.dominion.mechanic.server.progress.Progress;
 
 public abstract class Room implements Serializable {

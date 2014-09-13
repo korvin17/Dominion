@@ -9,8 +9,8 @@ import ru.korvin.dominion.dao.storage.Storage;
 import ru.korvin.dominion.dao.storage.shell.SaveRecord;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
-import ru.korvin.dominion.mechanic.server.event.Event;
 import ru.korvin.dominion.mechanic.server.Server;
+import ru.korvin.dominion.mechanic.server.event.Event;
 
 public class GameApplication extends Application {
     private static GameApplication defaultGameApplication;

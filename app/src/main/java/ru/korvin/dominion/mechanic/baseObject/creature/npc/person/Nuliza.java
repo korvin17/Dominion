@@ -2,10 +2,10 @@ package ru.korvin.dominion.mechanic.baseObject.creature.npc.person;
 
 import ru.korvin.dominion.R;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
-import ru.korvin.dominion.mechanic.baseObject.creature.stats.Stats;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
 import ru.korvin.dominion.mechanic.baseObject.creature.skill.SkillList;
+import ru.korvin.dominion.mechanic.baseObject.creature.stats.Stats;
 
 public class Nuliza extends Person {
     public Nuliza(int id) {

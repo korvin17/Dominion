@@ -14,7 +14,6 @@ import ru.korvin.dominion.mechanic.server.Server;
 import ru.korvin.dominion.mechanic.server.event.EventDiff;
 import ru.korvin.dominion.mechanic.server.event.EventType;
 import ru.korvin.dominion.mechanic.server.progress.PersonProgress;
-import ru.korvin.dominion.mechanic.server.progress.Progress;
 
 public class Person extends Creature {
     public int cost = 100;

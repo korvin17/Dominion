@@ -69,9 +69,12 @@ public class GirlInfoListMainFragment extends Fragment
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser)
-            ((GirlInfoListFragment) getFragmentManager()
-                .findFragmentById(R.id.girlinfo_list)).setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser) {
+            Fragment fragment=((GirlInfoListFragment) getFragmentManager()
+                    .findFragmentById(R.id.girlinfo_list));
+            if(fragment!=null)
+                fragment.setUserVisibleHint(isVisibleToUser);
+        }
     }
     public static GirlInfoListMainFragment newInstance() {
         GirlInfoListMainFragment fragment = new GirlInfoListMainFragment();

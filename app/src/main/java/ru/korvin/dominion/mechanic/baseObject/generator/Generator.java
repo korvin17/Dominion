@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
+import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.DungeonRoom;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.market.Market;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Maid;
 import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Rest;
@@ -38,13 +39,15 @@ public class Generator implements Serializable {
     }
 
     public Room[] generateAllRooms() {
-        Room[] rooms = new Room[3];
+        Room[] rooms = new Room[4];
         Room market = new Market(this);
         rooms[market.id] = market;
         Room rest = new Rest(this);
         rooms[rest.id] = rest;
         Room maid = new Maid(this);
         rooms[maid.id] = maid;
+        Room dungeon = new DungeonRoom(this);
+        rooms[dungeon.id]=dungeon;
         return rooms;
     }
 

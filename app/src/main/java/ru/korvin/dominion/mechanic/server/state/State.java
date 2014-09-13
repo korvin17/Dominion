@@ -1,8 +1,6 @@
 package ru.korvin.dominion.mechanic.server.state;
 
 
-import android.widget.ArrayAdapter;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;

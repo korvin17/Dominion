@@ -1,7 +1,6 @@
 package ru.korvin.dominion.mechanic.server;
 
 
-import java.util.Collection;
 import java.util.List;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
@@ -13,12 +12,12 @@ import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.Player;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Sex;
+import ru.korvin.dominion.mechanic.server.event.Event;
 import ru.korvin.dominion.mechanic.server.event.EventDiff;
 import ru.korvin.dominion.mechanic.server.event.EventType;
 import ru.korvin.dominion.mechanic.server.event.type.TotalEvent;
-import ru.korvin.dominion.mechanic.server.state.State;
-import ru.korvin.dominion.mechanic.server.event.Event;
 import ru.korvin.dominion.mechanic.server.progress.PersonProgress;
+import ru.korvin.dominion.mechanic.server.state.State;
 
 //TODO везде перекинуть на дефалт
 public class Server {

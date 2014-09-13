@@ -3,11 +3,9 @@ package ru.korvin.dominion.activity.newday;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.widget.TextView;
 
 import ru.korvin.dominion.R;
-import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.mechanic.server.Server;
 import ru.korvin.dominion.mechanic.server.event.type.TotalEvent;
 

@@ -6,7 +6,6 @@ import ru.korvin.dominion.mechanic.baseObject.castle.room.Room;
 import ru.korvin.dominion.mechanic.baseObject.creature.Person;
 import ru.korvin.dominion.mechanic.baseObject.creature.skill.SkillDiff;
 import ru.korvin.dominion.mechanic.baseObject.creature.skill.SkillGenerator;
-import ru.korvin.dominion.mechanic.baseObject.creature.stats.StatsDiff;
 import ru.korvin.dominion.mechanic.baseObject.generator.Generator;
 import ru.korvin.dominion.mechanic.server.event.EventDiff;
 import ru.korvin.dominion.mechanic.server.event.EventType;

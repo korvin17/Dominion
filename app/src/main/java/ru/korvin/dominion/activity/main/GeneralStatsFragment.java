@@ -1,7 +1,6 @@
 package ru.korvin.dominion.activity.main;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import ru.korvin.dominion.R;
-import ru.korvin.dominion.activity.newday.NextDayActivity;
 import ru.korvin.dominion.dao.GameApplication;
 import ru.korvin.dominion.mechanic.server.event.Event;
 

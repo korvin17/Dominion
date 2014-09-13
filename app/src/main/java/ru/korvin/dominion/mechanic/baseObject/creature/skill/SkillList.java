@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import ru.korvin.dominion.mechanic.baseObject.creature.skill.simple.Maid;
 import ru.korvin.dominion.mechanic.baseObject.creature.skill.util.SkillListIterator;
 
 //TODO сделать на основе мапы id хранить глобально в генераторе а тут просто значения

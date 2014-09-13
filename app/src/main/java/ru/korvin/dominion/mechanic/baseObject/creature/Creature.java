@@ -3,10 +3,8 @@ package ru.korvin.dominion.mechanic.baseObject.creature;
 import android.graphics.Point;
 
 import java.io.Serializable;
-import java.util.List;
 
 import ru.korvin.dominion.mechanic.baseObject.castle.room.complex.dungeon.Group;
-import ru.korvin.dominion.mechanic.baseObject.castle.room.simple.Rest;
 import ru.korvin.dominion.mechanic.baseObject.creature.battle.TacticType;
 import ru.korvin.dominion.mechanic.baseObject.creature.gameClass.Archetype;
 import ru.korvin.dominion.mechanic.baseObject.creature.race.Race;
